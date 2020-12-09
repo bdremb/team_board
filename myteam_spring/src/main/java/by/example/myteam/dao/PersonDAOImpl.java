@@ -1,13 +1,15 @@
 package by.example.myteam.dao;
 
 import by.example.myteam.entity.Person;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
-public class PersonDAOImpl implements PersonDAO{
+public class PersonDAOImpl implements PersonDAO {
 
     private final SessionFactory sessionFactory;
 
@@ -23,7 +25,8 @@ public class PersonDAOImpl implements PersonDAO{
 
     @Override
     public void savePerson(Person person) {
-
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(person);
     }
 
     @Override

@@ -10,7 +10,6 @@ import javax.validation.constraints.Min;
 public class ExtraInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "extra_id")
     private long id;
 
     @Column(name = "skype")

@@ -9,10 +9,9 @@ import javax.validation.constraints.Size;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
+    private int id;
 
-@Column(name = "name")
+    @Column(name = "name")
     private String name;
 
     @NotBlank
@@ -27,7 +26,7 @@ public class Person {
     private String confirmPassword;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name ="extra_id")
+    @JoinColumn(name = "id")
     private ExtraInfo extra;
 
 
@@ -38,7 +37,7 @@ public class Person {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
