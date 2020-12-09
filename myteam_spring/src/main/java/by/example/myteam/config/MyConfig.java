@@ -45,6 +45,8 @@ public class MyConfig {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
+        hibernateProperties.setProperty("hbm2ddl.auto", "update");
+        hibernateProperties.setProperty("hibernate.generate_statistics", "true");
 
         sessionFactory.setHibernateProperties(hibernateProperties);
         return sessionFactory;

@@ -6,7 +6,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 @Entity
-@Table("extra_info")
+@Table(name = "extra_info")
 public class ExtraInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
