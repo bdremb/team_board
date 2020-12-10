@@ -24,8 +24,7 @@ public class ExtraInfo {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(mappedBy = "extra", cascade = CascadeType.ALL)
-    private Person person;
+
 
     public ExtraInfo() {
     }
@@ -62,11 +61,5 @@ public class ExtraInfo {
         this.email = email;
     }
 
-    public Person getPerson() {
-        return person;
-    }
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 }

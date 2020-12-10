@@ -4,6 +4,7 @@ import by.example.myteam.dao.PersonDAO;
 import by.example.myteam.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,22 +19,26 @@ public class PersonServiceImpl implements PersonServise {
     }
 
     @Override
+    @Transactional
     public List<Person> getAllPerson() {
-        return null;
+        return personDAO.getAllPerson();
     }
 
     @Override
+    @Transactional
     public void savePerson(Person person) {
         personDAO.savePerson(person);
     }
 
     @Override
+    @Transactional
     public Person getPerson(long id) {
-        return null;
+        return personDAO.getPerson(id);
     }
 
     @Override
+    @Transactional
     public void deletePerson(long id) {
-
+        personDAO.deletePerson(id);
     }
 }

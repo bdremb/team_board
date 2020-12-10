@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
 
     @Column(name = "name")
@@ -24,10 +25,6 @@ public class Person {
 
     @Transient
     private String confirmPassword;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private ExtraInfo extra;
 
 
     public Person() {
@@ -73,11 +70,5 @@ public class Person {
         this.confirmPassword = confirmPassword;
     }
 
-    public ExtraInfo getExtra() {
-        return extra;
-    }
 
-    public void setExtra(ExtraInfo extra) {
-        this.extra = extra;
-    }
 }
