@@ -32,12 +32,7 @@ public class MainController {
     }
 
 
-    @GetMapping("/register")
-    public String addNewPerson(Model model) {
-        Person person = new Person();
-        model.addAttribute("person", person);
-        return "register";
-    }
+
 
     @PostMapping("/persons")
     public String saveNewPerson(@ModelAttribute("person") Person pers) {

@@ -10,7 +10,7 @@
 <div class="body_container">
     <table>
         <td style="padding-left: 2em;">
-            <a href="/team/register">Зарегистрируемся</a>,
+            <a href="/register">Зарегистрируемся</a>,
             <a href="/login">войдем</a> или уже почитаем
             <a href="/about">информацию о проекте</a>?
         </td>
