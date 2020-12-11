@@ -23,7 +23,7 @@
             <td>${person.name}</td>
             <td>${person.login}</td>
 
-            <td><input type="button" value="Details" onclick="window.location.href='persons/ + ${person.id}'"
+            <td><input type="button" value="Details" onclick="window.location.href='/team/persons/ + ${person.id}'"
                        formmethod="get"></td>
 
         </tr>

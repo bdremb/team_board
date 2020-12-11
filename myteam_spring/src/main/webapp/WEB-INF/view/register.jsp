@@ -23,11 +23,11 @@
     </tr>
     <tr>
         <th align="left">Password:</th>
-        <td><form:input path="password"/></td>
+        <td><form:password path="password"/></td>
     </tr>
     <tr>
         <th align="left">Confirm password:</th>
-        <td><form:input path="confirmPassword"/></td>
+        <td><form:password path="confirmPassword"/></td>
     </tr>
     <tr>
         <td></td>

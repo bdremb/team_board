@@ -35,8 +35,8 @@
 
 </table>
 
-<td><input style="color: coral" type="button" value="Delete" onclick="window.location.href='persons/ + ${person.id}'"></td><br>
-<td><input style="color: blue" type="button" value="Update" onclick="window.location.href='persons/ + ${person.id}'" formmethod="post"></td>
+<td><input style="color: coral" type="button" value="Delete" onclick="window.location.href='/team/persons/delete/ + ${person.id}'"></td><br>
+<td><input style="color: blue" type="button" value="Update" onclick="window.location.href='persons/update/ + ${person.id}'" formmethod="post"></td>
 
 </body>
 </html>

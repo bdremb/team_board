@@ -14,7 +14,7 @@ public class ViewController {
     }
 
 
-    @RequestMapping("login")
+    @RequestMapping("/login")
     public String login() {
         return "login";
     }
@@ -30,5 +30,6 @@ public class ViewController {
     public String showDetails() {
         return "person-details";
     }
+
 
 }

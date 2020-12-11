@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Period;
 import java.util.List;
 
 @Controller
@@ -15,7 +16,6 @@ import java.util.List;
 public class MainController {
 
     private final PersonServise personServise;
-
 
 
     @Autowired
@@ -32,7 +32,7 @@ public class MainController {
     }
 
     @GetMapping("/persons/{id}")
-    public String showPersonDetailsById (@PathVariable ("id") int id, Model model) {
+    public String showPersonDetailsById(@PathVariable("id") int id, Model model) {
         Person person = personServise.getPerson(id);
         model.addAttribute("person", person);
         return "person-details";
@@ -42,10 +42,29 @@ public class MainController {
     @PostMapping("/persons")
     public String saveNewPerson(@ModelAttribute("person") Person pers) {
         personServise.savePerson(pers);
-        return "/login";
+        return "login";
     }
 
+    @GetMapping("/persons/delete/{id}")
+    public String deletePerson(@PathVariable("id") int id, Model model) {
+        personServise.deletePerson(id);
+        List<Person> pers = personServise.getAllPerson();
+        model.addAttribute("allPersons", pers);
+        return "list-persons";
 
+    }
 
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("person", new Person());
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String enter(@ModelAttribute("person") Person person) {
+        Person newPerson = person;
+
+        return "person-page";
+    }
 
 }
