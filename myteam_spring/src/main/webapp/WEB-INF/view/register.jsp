@@ -1,28 +1,48 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Registration</title>
 </head>
-<h1>MyTeam</h1>
-
-<body>
+<body style="background-color: antiquewhite">
+<h1 style="color: blue">MyTeam</h1>
 <br>
 Пожалуйста, заполните все поля, которые сможете.<br>
 <br>
-
-
 <form:form action="/team/persons" modelAttribute="person" method="post">
-    Name: <form:input path="name"/><br><br>
-    Login: <form:input path="login"/><br><br>
-    Password: <form:input path="password"/><br><br>
-    Confirm password: <form:input path="confirmPassword"/><br><br>
-    <input type="submit" value="ADD">
+<table>
+    <tr>
+        <th align="left">Name:</th>
+        <td><form:input path="name"/></td>
+    </tr>
+    <tr>
+        <th align="left">Login:</th>
+        <td><form:input path="login"/></td>
+    </tr>
+    <tr>
+        <th align="left">Password:</th>
+        <td><form:input path="password"/></td>
+    </tr>
+    <tr>
+        <th align="left">Confirm password:</th>
+        <td><form:input path="confirmPassword"/></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Введите пароль и запомните его.</td>
+    </tr>
 
-</form:form>
+
+    <td>
+        <input type="submit" value="Register">
+    </td>
+    </form:form>
 
 
-<a href="/">BACK</a>
+</table>
+<td><input type="button" value="START PAGE" onclick="window.location.href='/'"></td><br>
+
 </body>
 </html>

@@ -4,7 +4,8 @@
 <head>
     <title>Login</title>
 </head>
-<body>
+<body style="background-color: antiquewhite">
+<h1 style="color: blue">MyTeam</h1>
 
 </body>
 </html>

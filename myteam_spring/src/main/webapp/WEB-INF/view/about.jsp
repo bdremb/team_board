@@ -10,8 +10,8 @@
 <head>
     <title>About</title>
 </head>
-<h1>MyTeam</h1>
-<body>
+<body style="background-color: antiquewhite">
+<h1 style="color: blue">MyTeam</h1>
 <div style="padding: 50px;">
     Здесь информация о проекте &mdash; но пока пусто :)
     <br>

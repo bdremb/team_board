@@ -6,8 +6,8 @@
 <head>
     <title>List Persons</title>
 </head>
-<body>
-<h1>List Persons</h1>
+<body style="background-color: antiquewhite">
+<h1 style="color: blue">MyTeam</h1>
 <table>
     <tr>
         <th>ID</th>
@@ -18,12 +18,14 @@
 
     <c:forEach var="person" items="${allPersons}">
 
-
         <tr>
             <td>${person.id}</td>
             <td>${person.name}</td>
             <td>${person.login}</td>
-            <td><a href="${person.id}" >About person</a></td>
+
+            <td><input type="button" value="Details" onclick="window.location.href='persons/ + ${person.id}'"
+                       formmethod="get"></td>
+
         </tr>
     </c:forEach>
 </table>

@@ -6,7 +6,7 @@
 
 
 </head>
-<body>
-<H2>Home page</H2>
+<body style="background-color: antiquewhite">
+<h1 style="color: blue">MyTeam</h1>
 </body>
 </html>
