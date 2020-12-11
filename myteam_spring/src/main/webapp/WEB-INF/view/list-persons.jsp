@@ -17,10 +17,13 @@
     </tr>
 
     <c:forEach var="person" items="${allPersons}">
+
+
         <tr>
             <td>${person.id}</td>
             <td>${person.name}</td>
             <td>${person.login}</td>
+            <td><a href="${person.id}" >About person</a></td>
         </tr>
     </c:forEach>
 </table>

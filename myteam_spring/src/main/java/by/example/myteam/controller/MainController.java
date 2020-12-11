@@ -16,12 +16,12 @@ public class MainController {
 
     private final PersonServise personServise;
 
-    private final ExtraInfoService extraInfoService;
+
 
     @Autowired
-    public MainController(PersonServise personServise, ExtraInfoService extraInfoService) {
+    public MainController(PersonServise personServise) {
         this.personServise = personServise;
-        this.extraInfoService = extraInfoService;
+
     }
 
     @GetMapping("/persons")
@@ -31,7 +31,12 @@ public class MainController {
         return "list-persons";
     }
 
-
+    @GetMapping("/persons/{id}")
+    public String showPersonDetailsById (@PathVariable ("id") int id, Model model) {
+        Person person = personServise.getPerson(id);
+        model.addAttribute("person", person);
+        return "person-details";
+    }
 
 
     @PostMapping("/persons")
@@ -39,6 +44,8 @@ public class MainController {
         personServise.savePerson(pers);
         return "/login";
     }
+
+
 
 
 }

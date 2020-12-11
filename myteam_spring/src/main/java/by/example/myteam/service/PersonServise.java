@@ -12,7 +12,7 @@ public interface PersonServise {
 
     void savePerson(Person person);
 
-    Person getPerson(long id);
+    Person getPerson(int id);
 
-    void deletePerson(long id);
+    void deletePerson(int id);
 }

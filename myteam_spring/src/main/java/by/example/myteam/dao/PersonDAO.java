@@ -10,7 +10,7 @@ public interface PersonDAO {
 
     void savePerson(Person person);
 
-    Person getPerson(long id);
+    Person getPerson(int id);
 
-    void deletePerson(long id);
+    void deletePerson(int id);
 }

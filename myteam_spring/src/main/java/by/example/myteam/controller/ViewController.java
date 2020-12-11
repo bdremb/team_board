@@ -25,4 +25,10 @@ public class ViewController {
         model.addAttribute("person", person);
         return "register";
     }
+
+    @RequestMapping("/details")
+    public String showDetails() {
+        return "person-details";
+    }
+
 }
