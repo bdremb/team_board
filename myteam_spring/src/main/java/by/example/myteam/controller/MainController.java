@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/team")
 public class MainController {
 
@@ -25,24 +25,25 @@ public class MainController {
     }
 
     @GetMapping("/persons")
-    public List<Person> showAllPersons(Model model) {
-        List<Person> persons = personServise.getAllPerson();
-        model.addAttribute("persons", persons);
-        return persons;
+    public String showAllPersons(Model model) {
+        List<Person> pers = personServise.getAllPerson();
+        model.addAttribute("allPersons", pers);
+        return "list-persons";
+    }
+
+
+    @GetMapping("/register")
+    public String addNewPerson(Model model) {
+        Person person = new Person();
+        model.addAttribute("person", person);
+        return "register";
     }
 
     @PostMapping("/persons")
-    public Person addNewPerson (@RequestBody Person person, Model model) {
-        personServise.savePerson(person);
-        model.addAttribute("person", person);
-        return person;
+    public String saveNewPerson(@ModelAttribute("person") Person pers) {
+        personServise.savePerson(pers);
+        return "/login";
     }
-
-    @GetMapping("/home")
-    public String showHomePage() {
-        return "home";
-    }
-
 
 
 }

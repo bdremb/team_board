@@ -1,11 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: bdrem
-  Date: 10.12.2020
-  Time: 21:35
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +8,22 @@
 </head>
 <body>
 <h1>List Persons</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Login</th>
+
+    </tr>
+
+    <c:forEach var="person" items="${allPersons}">
+        <tr>
+            <td>${person.id}</td>
+            <td>${person.name}</td>
+            <td>${person.login}</td>
+        </tr>
+    </c:forEach>
+</table>
 
 </body>
 </html>
