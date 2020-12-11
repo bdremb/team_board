@@ -4,6 +4,7 @@ import by.example.myteam.entity.Person;
 import by.example.myteam.service.ExtraInfoService;
 import by.example.myteam.service.PersonServise;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,12 @@ public class MainController {
         model.addAttribute("person", person);
         return person;
     }
+
+    @GetMapping("/home")
+    public String showHomePage() {
+        return "home";
+    }
+
 
 
 }

@@ -15,6 +15,9 @@ public class Person {
     @Column(name = "name")
     private String name;
 
+    @Column(name="surname")
+    private String surname;
+
     @NotBlank
     @Column(name = "login")
     private String login;
@@ -70,5 +73,11 @@ public class Person {
         this.confirmPassword = confirmPassword;
     }
 
+    public String getSurname() {
+        return surname;
+    }
 
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 }
