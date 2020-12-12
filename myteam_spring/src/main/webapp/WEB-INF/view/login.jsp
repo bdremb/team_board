@@ -12,7 +12,6 @@
 
 <form:form action="/team/login" modelAttribute="person" method="post">
 <table>
-
     <tr>
         <th align="left">Login:</th>
         <td><form:input path="login"/></td>
@@ -21,8 +20,6 @@
         <th align="left">Password:</th>
         <td><form:password path="password"/></td>
     </tr>
-
-
     <td>
         <input type="submit" value="OK">
     </td>

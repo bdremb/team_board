@@ -3,7 +3,6 @@ package by.example.myteam.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -15,12 +14,14 @@ public class Person {
     private int id;
 
     @Column(name = "name")
+    @NotBlank(message = "Укажите Ваше имя")
     private String name;
 
     @Column(name="surname")
+    @NotBlank(message = "Укажите Вашу фамилию")
     private String surname;
 
-    @NotBlank(message = "login have not empty field")
+    @NotBlank(message = "Придумайте логин")
     @Column(name = "login")
     private String login;
 
@@ -33,7 +34,7 @@ public class Person {
     private String password;
 
     @Transient
-    @NotEmpty(message = "please confirm password")
+    @NotBlank(message = "подтвердите пароль")
     private String confirmPassword;
 
 

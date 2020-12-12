@@ -15,35 +15,34 @@
     <tr>
         <th align="left">Имя:</th>
         <td><form:input path="name"/></td>
-        <th><form:errors cssStyle="color: orangered" path="name"/></th>
+        <th align="left"><form:errors cssStyle="color: orangered" path="name"/></th>
 
     </tr>
     <tr>
         <th align="left">Фамилия:</th>
         <td><form:input path="surname"/></td>
-        <th><form:errors cssStyle="color: orangered" path="surname"/></th>
+        <th align="left"><form:errors cssStyle="color: orangered" path="surname"/></th>
     </tr>
     <tr>
         <th> мужчина <form:radiobutton path="gender" value="man"/><br>
             женщина <form:radiobutton path="gender" value="woman"/></th>
-
 
     </tr>
 
     <tr>
         <th align="left">Логин:</th>
         <td><form:input path="login"/></td>
-        <th><form:errors cssStyle="color: orangered" path="login"/></th>
+        <th align="left"><form:errors cssStyle="color: orangered" path="login"/></th>
     </tr>
     <tr>
         <th align="left">Пароль:</th>
         <td><form:password path="password"/></td>
-        <th><form:errors cssStyle="color: orangered" path="password"/></th>
+        <th align="left"><form:errors cssStyle="color: orangered" path="password"/></th>
     </tr>
     <tr>
         <th align="left">Потдвердите пароль:</th>
         <td><form:password path="confirmPassword"/></td>
-        <th><form:errors cssStyle="color: orangered" path="confirmPassword"/></th>
+        <th align="left"><form:errors cssStyle="color: orangered" path="confirmPassword"/></th>
     </tr>
     <tr>
         <td></td>

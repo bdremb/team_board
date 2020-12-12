@@ -40,12 +40,21 @@ public class MainController {
     @PostMapping("/persons")
     public String saveNewPerson(@ModelAttribute("person") @Valid Person pers,
                                 BindingResult bindingResult, Model model) {
-        if (!bindingResult.hasErrors() && personServise.savePerson(pers)) {
-            return "login";
+        if (bindingResult.hasErrors()) {
+            return "register";
         }
-        model.addAttribute("info", "Такой логин уже зарегистрирован.");
-        model.addAttribute("page", "/register");
-        return "error-page";
+        if (!personServise.savePerson(pers)) {
+            model.addAttribute("info", "Такой логин уже зарегистрирован.");
+            model.addAttribute("page", "/register");
+            return "error-page";
+        }
+        if (!pers.getPassword().equals(pers.getConfirmPassword())) {
+            model.addAttribute("info", "Пароли не совпадают.");
+            model.addAttribute("page", "/register");
+            return "error-page";
+        }
+
+        return "login";
     }
 
     @GetMapping("/persons/delete/{id}")
