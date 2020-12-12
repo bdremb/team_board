@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
+
 @RequestMapping("/team")
 public class MainController {
 
@@ -51,8 +53,17 @@ public class MainController {
 
     @PostMapping("/login")
     public String enter(@ModelAttribute("person") Person person, Model model) {
-        model.addAttribute("persons", person);
-        return "person-page";
+
+        List<Person> pers = personServise.getAllPerson();
+        Optional<Person> login = pers.stream().filter(pp -> pp.getLogin().equals(person.getLogin())).findAny();
+        Optional<Person> password = pers.stream().filter(pp -> pp.getLogin().equals(person.getPassword())).findAny();
+
+        if (login.isPresent() && password.isPresent()) {
+            Person getPerson = login.get();
+            model.addAttribute("person", getPerson);
+            return "person-page";
+        }
+       return "redirect:/login";
     }
 
 }

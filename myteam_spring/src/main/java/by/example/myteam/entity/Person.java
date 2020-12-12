@@ -33,7 +33,7 @@ public class Person {
     public Person() {
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
