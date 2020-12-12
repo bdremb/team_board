@@ -60,9 +60,4 @@ public class PersonDAOImpl implements PersonDAO {
         query.executeUpdate();
         logger.info("DELETE PERSON completed successfully");
     }
-
-
-
-
-
 }

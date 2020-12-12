@@ -13,7 +13,6 @@ public class ViewController {
         return "about";
     }
 
-
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("person", new Person());
@@ -30,6 +29,4 @@ public class ViewController {
     public String showDetails() {
         return "person-details";
     }
-
-
 }

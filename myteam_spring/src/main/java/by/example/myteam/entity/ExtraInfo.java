@@ -24,8 +24,6 @@ public class ExtraInfo {
     @Column(name = "email")
     private String email;
 
-
-
     public ExtraInfo() {
     }
 

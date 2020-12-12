@@ -4,7 +4,6 @@ import by.example.myteam.entity.Person;
 
 import java.util.List;
 
-
 public interface PersonServise {
 
     List<Person> getAllPerson();

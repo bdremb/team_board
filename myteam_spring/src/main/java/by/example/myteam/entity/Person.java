@@ -10,14 +10,14 @@ import javax.validation.constraints.Size;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "name")
     @NotBlank(message = "Укажите Ваше имя")
     private String name;
 
-    @Column(name="surname")
+    @Column(name = "surname")
     @NotBlank(message = "Укажите Вашу фамилию")
     private String surname;
 
@@ -28,15 +28,13 @@ public class Person {
     @Column(name = "gender")
     private String gender;
 
-
-    @Size(min = 1, max = 50, message = "Password length from 6 to 50 characters")
+    @Size(min = 2, max = 50, message = "Password length from 2 to 50 characters")
     @Column(name = "password")
     private String password;
 
     @Transient
     @NotBlank(message = "подтвердите пароль")
     private String confirmPassword;
-
 
     public Person() {
     }
