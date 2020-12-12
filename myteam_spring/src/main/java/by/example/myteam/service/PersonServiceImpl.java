@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonServiceImpl implements PersonServise {
@@ -40,5 +41,21 @@ public class PersonServiceImpl implements PersonServise {
     @Transactional
     public void deletePerson(int id) {
         personDAO.deletePerson(id);
+    }
+
+    @Override
+    @Transactional
+    public Person validateAndGetPerson(Person person) {
+        List<Person> allPerson = personDAO.getAllPerson();
+        Optional<Person> login = allPerson.stream()
+                .filter(p -> p.getLogin().equals(person.getLogin()))
+                .findAny();
+        Optional<Person> password = allPerson.stream()
+                .filter(p -> p.getLogin().equals(person.getPassword()))
+                .findAny();
+        if (login.isPresent() && password.isPresent()) {
+            return login.get();
+        }
+        return null;
     }
 }

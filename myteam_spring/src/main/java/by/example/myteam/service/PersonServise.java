@@ -1,7 +1,6 @@
 package by.example.myteam.service;
 
 import by.example.myteam.entity.Person;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -15,4 +14,6 @@ public interface PersonServise {
     Person getPerson(int id);
 
     void deletePerson(int id);
+
+     Person validateAndGetPerson(Person person);
 }

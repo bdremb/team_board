@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 
@@ -36,7 +35,6 @@ public class MainController {
         return "person-details";
     }
 
-
     @PostMapping("/persons")
     public String saveNewPerson(@ModelAttribute("person") Person pers) {
         personServise.savePerson(pers);
@@ -53,17 +51,12 @@ public class MainController {
 
     @PostMapping("/login")
     public String enter(@ModelAttribute("person") Person person, Model model) {
-
-        List<Person> pers = personServise.getAllPerson();
-        Optional<Person> login = pers.stream().filter(pp -> pp.getLogin().equals(person.getLogin())).findAny();
-        Optional<Person> password = pers.stream().filter(pp -> pp.getLogin().equals(person.getPassword())).findAny();
-
-        if (login.isPresent() && password.isPresent()) {
-            Person getPerson = login.get();
-            model.addAttribute("person", getPerson);
+        Person newPerson = personServise.validateAndGetPerson(person);
+        if (newPerson != null) {
+            model.addAttribute("person", newPerson);
             return "person-page";
         }
-       return "redirect:/login";
+        return "redirect:/login";
     }
 
 }
