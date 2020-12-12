@@ -15,7 +15,9 @@ public class ViewController {
 
 
     @RequestMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        Person person = new Person();
+        model.addAttribute("person", person);
         return "login";
     }
 
