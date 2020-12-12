@@ -13,23 +13,17 @@ import java.util.List;
 @RequestMapping("/team")
 public class MainController {
 
-
-
     private final PersonServise personServise;
-
 
     @Autowired
     public MainController(PersonServise personServise) {
         this.personServise = personServise;
-
     }
 
     @GetMapping("/persons")
     public String showAllPersons(Model model) {
-
         List<Person> pers = personServise.getAllPerson();
         model.addAttribute("allPersons", pers);
-
         return "list-persons";
     }
 
@@ -53,9 +47,7 @@ public class MainController {
         List<Person> pers = personServise.getAllPerson();
         model.addAttribute("allPersons", pers);
         return "list-persons";
-
     }
-
 
     @PostMapping("/login")
     public String enter(@ModelAttribute("person") Person person, Model model) {
