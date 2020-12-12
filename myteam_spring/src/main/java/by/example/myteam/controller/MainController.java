@@ -1,19 +1,19 @@
 package by.example.myteam.controller;
 
 import by.example.myteam.entity.Person;
-import by.example.myteam.service.ExtraInfoService;
 import by.example.myteam.service.PersonServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Period;
 import java.util.List;
 
 @Controller
 @RequestMapping("/team")
 public class MainController {
+
+
 
     private final PersonServise personServise;
 
@@ -26,8 +26,10 @@ public class MainController {
 
     @GetMapping("/persons")
     public String showAllPersons(Model model) {
+
         List<Person> pers = personServise.getAllPerson();
         model.addAttribute("allPersons", pers);
+
         return "list-persons";
     }
 
@@ -54,19 +56,11 @@ public class MainController {
 
     }
 
-    @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("person", new Person());
-        return "login";
-    }
 
     @PostMapping("/login")
-    public String enter(@ModelAttribute("person") Person person) {
-        Person newPerson = person;
-
+    public String enter(@ModelAttribute("person") Person person, Model model) {
+        model.addAttribute("persons", person);
         return "person-page";
     }
-
-
 
 }
