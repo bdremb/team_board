@@ -1,7 +1,6 @@
 package by.example.myteam.service;
 
 import by.example.myteam.dao.PersonDAO;
-import by.example.myteam.dao.PersonDAOImpl;
 import by.example.myteam.entity.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +29,16 @@ public class PersonServiceImpl implements PersonServise {
 
     @Override
     @Transactional
-    public void savePerson(Person person) {
+    public boolean savePerson(Person person) {
+        List<Person> allPerson = personDAO.getAllPerson();
+        Optional<Person> login = allPerson.stream()
+                .filter(p -> p.getLogin().equals(person.getLogin()))
+                .findAny();
+        if (login.isPresent()) {
+            return false;
+        }
         personDAO.savePerson(person);
+        return true;
     }
 
     @Override
@@ -53,13 +60,13 @@ public class PersonServiceImpl implements PersonServise {
         Optional<Person> login = allPerson.stream()
                 .filter(p -> p.getLogin().equals(person.getLogin()))
                 .findAny();
-        Optional<Person> password = allPerson.stream()
-                .filter(p -> p.getLogin().equals(person.getPassword()))
-                .findAny();
-        if (login.isPresent() && password.isPresent()) {
-            logger.info("Successful. Login == Password");
-            return login.get();
-
+        if (login.isPresent()) {
+            Person newPerson = login.get();
+            String password = newPerson.getPassword();
+            if (person.getPassword().equals(password)) {
+                logger.info("Successful. Login == Password");
+                return login.get();
+            }
         }
         logger.error("Person error. Password and login are not valid. Method returned null...");
         return null;

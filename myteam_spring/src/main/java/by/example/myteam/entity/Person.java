@@ -1,7 +1,9 @@
 package by.example.myteam.entity;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -18,15 +20,20 @@ public class Person {
     @Column(name="surname")
     private String surname;
 
-    @NotBlank
+    @NotBlank(message = "login have not empty field")
     @Column(name = "login")
     private String login;
+
+    @Column(name = "gender")
+    private String gender;
+
 
     @Size(min = 1, max = 50, message = "Password length from 6 to 50 characters")
     @Column(name = "password")
     private String password;
 
     @Transient
+    @NotEmpty(message = "please confirm password")
     private String confirmPassword;
 
 
@@ -79,5 +86,13 @@ public class Person {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

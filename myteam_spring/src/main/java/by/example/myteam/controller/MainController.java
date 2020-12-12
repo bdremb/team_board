@@ -1,16 +1,18 @@
 package by.example.myteam.controller;
 
+
 import by.example.myteam.entity.Person;
 import by.example.myteam.service.PersonServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-
 @RequestMapping("/team")
 public class MainController {
 
@@ -36,9 +38,11 @@ public class MainController {
     }
 
     @PostMapping("/persons")
-    public String saveNewPerson(@ModelAttribute("person") Person pers) {
-        personServise.savePerson(pers);
-        return "login";
+    public String saveNewPerson(@ModelAttribute("person") @Valid Person pers, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors() && personServise.savePerson(pers)) {
+            return "login";
+        }
+        return "register";
     }
 
     @GetMapping("/persons/delete/{id}")

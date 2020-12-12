@@ -9,7 +9,7 @@ public interface PersonServise {
 
     List<Person> getAllPerson();
 
-    void savePerson(Person person);
+    boolean savePerson(Person person);
 
     Person getPerson(int id);
 
