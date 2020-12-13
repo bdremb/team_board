@@ -1,8 +1,11 @@
 package by.example.myteam.controller;
 
 
+import by.example.myteam.dao.PersonDAOImpl;
 import by.example.myteam.entity.Person;
 import by.example.myteam.service.PersonServise;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/team")
 public class MainController {
-
+    final static Logger logger = LoggerFactory.getLogger(MainController.class);
     private final PersonServise personServise;
 
     @Autowired
@@ -27,6 +30,7 @@ public class MainController {
     public String showAllPersons(Model model) {
         List<Person> pers = personServise.getAllPerson();
         model.addAttribute("allPersons", pers);
+
         return "list-persons";
     }
 
@@ -41,10 +45,14 @@ public class MainController {
     public String saveNewPerson(@ModelAttribute("person") @Valid Person pers,
                                 BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            logger.error("binding result has errors");
             return "register";
         }
-        if (personServise.savePerson(pers) && pers.getPassword().equals(pers.getConfirmPassword())) {
-            return "login";
+
+        if (pers.getPassword().equals(pers.getConfirmPassword())) {
+            if(personServise.savePerson(pers)) {
+                return "login";
+            }
         }
         model.addAttribute("info", "Измените логин или проверьте правильность подтверждения пароля");
         model.addAttribute("page", "/register");

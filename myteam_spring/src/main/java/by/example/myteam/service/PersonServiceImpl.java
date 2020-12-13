@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 public class PersonServiceImpl implements PersonServise {
-    final static Logger logger = LoggerFactory.getLogger(PersonServiceImpl.class);
+    final static Logger logger = LoggerFactory.getLogger("Person Service");
     private final PersonDAO personDAO;
 
     @Autowired

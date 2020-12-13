@@ -24,7 +24,7 @@
         <th align="left"><form:errors cssStyle="color: orangered" path="surname"/></th>
     </tr>
     <tr>
-        <th> мужчина <form:radiobutton path="gender" value="man"/><br>
+        <th> мужчина <form:radiobutton path="gender" value="man"/>
             женщина <form:radiobutton path="gender" value="woman"/></th>
 
     </tr>
