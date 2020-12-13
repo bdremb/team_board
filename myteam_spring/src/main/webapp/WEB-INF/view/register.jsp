@@ -6,7 +6,7 @@
     <title>Registration</title>
 </head>
 <body style="background-color: antiquewhite">
-<h1 style="color: blue">MyTeam</h1>
+<h1 style="color: blue" align="center">MyTeam</h1>
 <br>
 Пожалуйста, заполните все поля, которые сможете.<br>
 <br>
@@ -35,6 +35,11 @@
         <th align="left"><form:errors cssStyle="color: orangered" path="login"/></th>
     </tr>
     <tr>
+        <td></td>
+        <td>Введите пароль и запомните его.</td>
+    </tr>
+
+    <tr>
         <th align="left">Пароль:</th>
         <td><form:password path="password"/></td>
         <th align="left"><form:errors cssStyle="color: orangered" path="password"/></th>
@@ -44,11 +49,6 @@
         <td><form:password path="confirmPassword"/></td>
         <th align="left"><form:errors cssStyle="color: orangered" path="confirmPassword"/></th>
     </tr>
-    <tr>
-        <td></td>
-        <td>Введите пароль и запомните его.</td>
-    </tr>
-
 
     <td>
         <input type="submit" value="Register">

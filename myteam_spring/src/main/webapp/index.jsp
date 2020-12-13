@@ -6,10 +6,10 @@
 
 </head>
 <body style="background-color: antiquewhite">
-<h1 style="color: blue">MyTeam</h1>
+<h1 style="color: blue" align="center">MyTeam</h1>
 <div class="body_container">
     <table>
-        <td style="padding-left: 2em;">
+        <td style="padding-left: 2em;" align="center">
             <a href="/register">Зарегистрируемся</a>,
             <a href="/login">войдем</a> или уже почитаем
             <a href="/about">информацию о проекте</a>?

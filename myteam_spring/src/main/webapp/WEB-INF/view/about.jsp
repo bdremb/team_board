@@ -5,18 +5,19 @@
     <title>About</title>
 </head>
 <body style="background-color: antiquewhite">
-<h1 style="color: blue">MyTeam</h1>
+<h1 style="color: blue" align="center">MyTeam</h1>
 <div style="padding: 50px;">
     Здесь информация о проекте &mdash; но пока пусто :)
     <br>
     <br>
         <table>
-        <h2><b style="color: blue">Это неважно, что медленно ты идешь… Главное — не останавливайся.</b><br>
-            <h3>Конфуций</h3></h2>
+        <h2 align="center"><b style="color: blue">Это неважно, что медленно ты идешь… Главное — не останавливайся.</b><br>
+            <h4 align="center" style="color: darkblue">Конфуций</h4></h2>
+        <br><br>
         <br><br>
 
-        <h2><b style="color: blue">Если тебе трудно — значит, ты идешь в правильном направлении.</b><br>
-            <h3>Конфуций</h3></h2>
+        <h2 align="center"><b style="color: blue">Если тебе трудно — значит, ты идешь в правильном направлении.</b><br>
+            <h4 align="center" style="color: darkblue">Конфуций</h4></h2>
     </table>
     <br>
 

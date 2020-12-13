@@ -43,18 +43,13 @@ public class MainController {
         if (bindingResult.hasErrors()) {
             return "register";
         }
-        if (!personServise.savePerson(pers)) {
-            model.addAttribute("info", "Такой логин уже зарегистрирован.");
-            model.addAttribute("page", "/register");
-            return "error-page";
+        if (personServise.savePerson(pers) && pers.getPassword().equals(pers.getConfirmPassword())) {
+            return "login";
         }
-        if (!pers.getPassword().equals(pers.getConfirmPassword())) {
-            model.addAttribute("info", "Пароли не совпадают.");
-            model.addAttribute("page", "/register");
-            return "error-page";
-        }
+        model.addAttribute("info", "Измените логин или проверьте правильность подтверждения пароля");
+        model.addAttribute("page", "/register");
+        return "error-page";
 
-        return "login";
     }
 
     @GetMapping("/persons/delete/{id}")

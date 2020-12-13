@@ -20,7 +20,7 @@
 
   <servlet-mapping>
     <servlet-name>default</servlet-name>
-    <url-pattern>/resources/*</url-pattern>
+    <url-pattern>/images/*</url-pattern>
   </servlet-mapping>
 
 

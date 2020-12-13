@@ -6,6 +6,6 @@
 </head>
 <body style="background-color: antiquewhite">
 
-<h1 style="color: blue">MyTeam</h1>
+<h1 style="color: blue" align="center">MyTeam</h1>
 </body>
 </html>
