@@ -11,9 +11,9 @@
 <table>
     <tr>
 
-        <th>Имя</th>
-        <th>Фамилия</th>
-        <th>Логин</th>
+        <th>NAME</th>
+        <th> SURNAME </th>
+        <th>LOGIN</th>
 
     </tr>
 

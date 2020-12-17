@@ -23,7 +23,6 @@ public class MyConfig {
             dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/people?serverTimezone=Europe/Moscow");
             dataSource.setUser("root");
             dataSource.setPassword("testtest");
-
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
@@ -35,13 +34,11 @@ public class MyConfig {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("by.example.myteam.entity");
-
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
-
         sessionFactory.setHibernateProperties(hibernateProperties);
         return sessionFactory;
     }
