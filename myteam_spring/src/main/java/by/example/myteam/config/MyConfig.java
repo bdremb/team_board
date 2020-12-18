@@ -1,6 +1,9 @@
 package by.example.myteam.config;
 
+import by.example.myteam.dao.PersonDAOImpl;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -9,12 +12,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
+import java.util.Arrays;
 import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
 public class MyConfig {
-
+    final static Logger logger = LoggerFactory.getLogger(MyConfig.class);
     @Bean
     public DataSource dataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -24,6 +28,7 @@ public class MyConfig {
             dataSource.setUser("root");
             dataSource.setPassword("testtest");
         } catch (PropertyVetoException e) {
+            logger.error(Arrays.toString(e.getStackTrace()), e);
             e.printStackTrace();
         }
         return dataSource;
