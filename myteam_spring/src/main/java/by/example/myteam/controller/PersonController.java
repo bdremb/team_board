@@ -54,7 +54,6 @@ public class PersonController {
         model.addAttribute("info", "Измените логин или проверьте правильность подтверждения пароля");
         model.addAttribute("page", "/register");
         return "error-page";
-
     }
 
     @GetMapping("/persons/delete/{id}")
