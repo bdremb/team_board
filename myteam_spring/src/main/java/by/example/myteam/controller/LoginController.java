@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
+
+    @RequestMapping("/")
+    public String startPage() {
+        return "start";
+    }
+
     @RequestMapping("/about")
     public String about() {
         return "about";
