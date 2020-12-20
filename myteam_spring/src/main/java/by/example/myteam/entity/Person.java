@@ -99,4 +99,12 @@ public class Person {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public ExtraInfo getExtraInfo() {
+        return extraInfo;
+    }
+
+    public void setExtraInfo(ExtraInfo extraInfo) {
+        this.extraInfo = extraInfo;
+    }
 }

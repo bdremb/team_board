@@ -14,5 +14,5 @@ public interface PersonService {
 
     void deletePerson(int id);
 
-     Person validateAndGetPerson(Person person);
+    Person validateAndGetPerson(Person person);
 }

@@ -1,5 +1,6 @@
 package by.example.myteam.controller;
 
+import by.example.myteam.entity.ExtraInfo;
 import by.example.myteam.entity.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

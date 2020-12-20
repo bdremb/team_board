@@ -1,7 +1,9 @@
 package by.example.myteam.controller;
 
 
+import by.example.myteam.entity.ExtraInfo;
 import by.example.myteam.entity.Person;
+import by.example.myteam.service.ExtraInfoService;
 import by.example.myteam.service.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +21,12 @@ import java.util.List;
 public class PersonController {
     final static Logger logger = LoggerFactory.getLogger(PersonController.class);
     private final PersonService personServise;
+    private final ExtraInfoService extraInfoService;
 
     @Autowired
-    public PersonController(PersonService personServise) {
+    public PersonController(PersonService personServise, ExtraInfoService extraInfoService) {
         this.personServise = personServise;
+        this.extraInfoService = extraInfoService;
     }
 
     @GetMapping("/persons")
@@ -43,11 +47,12 @@ public class PersonController {
     public String saveNewPerson(@ModelAttribute("person") @Valid Person pers,
                                 BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            logger.error("binding result has errors");
+            logger.error("binding result has errors {}", "POST MAPPING MESSAGE");
+
             return "register";
         }
         if (pers.getPassword().equals(pers.getConfirmPassword())) {
-            if(personServise.savePerson(pers)) {
+            if (personServise.savePerson(pers)) {
                 return "login";
             }
         }
@@ -68,9 +73,19 @@ public class PersonController {
     public String enter(@ModelAttribute("person") Person person, Model model) {
         Person newPerson = personServise.validateAndGetPerson(person);
         if (newPerson != null) {
+            ExtraInfo extraInfo = new ExtraInfo();
             model.addAttribute("person", newPerson);
+            model.addAttribute("extrainfo", extraInfo);
             return "person-page";
         }
         return "redirect:/login";
     }
+
+    @PostMapping("/addinfo")
+    public String saveExtraInfoOfPerson(@ModelAttribute("extrainfo") ExtraInfo extraInfo,
+                                        Model model) {
+        //extraInfoService.saveExtraInfo(extraInfo);
+        return "person-page";
+    }
+
 }

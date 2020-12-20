@@ -25,7 +25,6 @@ public class PersonDAOImpl implements PersonDAO {
     @Override
     public List<Person> getAllPerson() {
         Session session = sessionFactory.getCurrentSession();
-
         List<Person> persons = session.createQuery("from Person ", Person.class)
                 .getResultList();
         logger.info("Method getAllPerson completed successfully");
