@@ -48,10 +48,10 @@ public class PersonController {
                                 BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             logger.error("binding result has errors {}", "POST MAPPING MESSAGE");
-
             return "register";
         }
         if (pers.getPassword().equals(pers.getConfirmPassword())) {
+            pers.setExtraInfo(new ExtraInfo());
             if (personServise.savePerson(pers)) {
                 return "login";
             }
@@ -82,9 +82,12 @@ public class PersonController {
     }
 
     @PostMapping("/addinfo")
-    public String saveExtraInfoOfPerson(@ModelAttribute("extrainfo") ExtraInfo extraInfo,
-                                        Model model) {
-        //extraInfoService.saveExtraInfo(extraInfo);
+    public String saveExtraInfoOfPerson(@ModelAttribute("extrainfo") ExtraInfo extraInfo, //this method did not ready
+                                        @ModelAttribute("person") Person p) {
+        Person person = personServise.getPerson(p.getId());
+
+        person.setExtraInfo(extraInfo);
+        System.out.println(personServise.savePerson(person));
         return "person-page";
     }
 

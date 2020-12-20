@@ -3,13 +3,13 @@ package by.example.myteam.entity;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "extra_info")
 public class ExtraInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
     @Column(name = "skype")
@@ -21,7 +21,7 @@ public class ExtraInfo {
     @Column(name="phone_number")
     private String phoneNumber;
 
-    @Min(value = 1)
+
     @Max(value = 150)
     @Column(name = "age")
     private int age;
@@ -34,6 +34,11 @@ public class ExtraInfo {
     private Person person;
 
     public ExtraInfo() {
+        this.skype = "enter your skype";
+        this.city = "enter your city ";
+        this.phoneNumber = "enter your phone ";
+        this.age = 1;
+        this.email = "example@example.com";
     }
 
     public long getId() {

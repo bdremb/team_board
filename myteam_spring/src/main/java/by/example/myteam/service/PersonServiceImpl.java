@@ -1,6 +1,7 @@
 package by.example.myteam.service;
 
 import by.example.myteam.dao.PersonDAO;
+import by.example.myteam.entity.ExtraInfo;
 import by.example.myteam.entity.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +38,7 @@ public class PersonServiceImpl implements PersonService {
         if (login.isPresent()) {
             return false;
         }
+
         personDAO.savePerson(person);
         return true;
     }

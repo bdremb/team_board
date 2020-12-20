@@ -44,6 +44,8 @@ public class Person {
     public Person() {
     }
 
+
+
     public int getId() {
         return id;
     }
@@ -107,4 +109,6 @@ public class Person {
     public void setExtraInfo(ExtraInfo extraInfo) {
         this.extraInfo = extraInfo;
     }
+
+
 }
