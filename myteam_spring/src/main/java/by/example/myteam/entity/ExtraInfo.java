@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import java.time.Period;
 
 @Entity
 @Table(name = "extra_info")
@@ -15,6 +16,12 @@ public class ExtraInfo {
     @Column(name = "skype")
     private String skype;
 
+    @Column(name="city")
+    private String city;
+
+    @Column(name="phone_number")
+    private String phoneNumber;
+
     @Min(value = 1)
     @Max(value = 150)
     @Column(name = "age")
@@ -23,6 +30,9 @@ public class ExtraInfo {
     @Email(message = "Email is not valid")
     @Column(name = "email")
     private String email;
+
+    @OneToOne(mappedBy = "extraInfo", cascade = CascadeType.ALL)
+    private Person person;
 
     public ExtraInfo() {
     }

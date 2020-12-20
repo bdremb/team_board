@@ -36,6 +36,11 @@ public class Person {
     @NotBlank(message = "подтвердите пароль")
     private String confirmPassword;
 
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "extra_info_id")
+    private ExtraInfo extraInfo;
+
     public Person() {
     }
 
