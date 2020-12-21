@@ -47,8 +47,7 @@
     <tr>
         <th align="left">Потдвердите пароль:</th>
         <td><form:password path="confirmPassword"/></td>
-        <th align="left"><form:errors cssStyle="color: orangered" path="confirmPassword"/></th>
-    </tr>
+     </tr>
 
     <td>
         <input type="submit" value="Register">

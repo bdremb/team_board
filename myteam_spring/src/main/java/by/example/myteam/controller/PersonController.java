@@ -82,12 +82,11 @@ public class PersonController {
     }
 
     @PostMapping("/addinfo")
-    public String saveExtraInfoOfPerson(@ModelAttribute("extrainfo") ExtraInfo extraInfo, //this method did not ready
-                                        @ModelAttribute("person") Person p) {
-        Person person = personServise.getPerson(p.getId());
-
-        person.setExtraInfo(extraInfo);
-        System.out.println(personServise.savePerson(person));
+    public String saveExtraInfoOfPerson(@ModelAttribute("extrainfo") ExtraInfo extraInfo,
+                                        @ModelAttribute("person") Person person, Model model) {
+        ExtraInfo info = personServise.saveExtraInfoOfPerson(extraInfo, person);
+        extraInfoService.saveExtraInfo(info);
+        model.addAttribute("person", info.getPerson());
         return "person-page";
     }
 

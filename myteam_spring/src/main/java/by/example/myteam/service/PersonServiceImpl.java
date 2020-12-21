@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -73,4 +75,22 @@ public class PersonServiceImpl implements PersonService {
         logger.error("Person error. Password and login are not valid. Method returned null...");
         return null;
     }
+
+
+    @Override
+    @Transactional
+    public ExtraInfo saveExtraInfoOfPerson(ExtraInfo extraInfo, Person p) {
+        Person person = personDAO.getPerson(p.getId());
+        ExtraInfo info = person.getExtraInfo();
+        info.setAge(extraInfo.getAge());
+        info.setCity(extraInfo.getCity());
+        info.setEmail(extraInfo.getEmail());
+        info.setSkype(extraInfo.getSkype());
+        info.setPhoneNumber(extraInfo.getPhoneNumber());
+
+        return info;
+    }
+
+
+
 }

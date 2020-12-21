@@ -1,6 +1,5 @@
 package by.example.myteam.dao;
 
-import by.example.myteam.entity.ExtraInfo;
 import by.example.myteam.entity.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -33,7 +33,6 @@ public class Person {
     private String password;
 
     @Transient
-    @NotBlank(message = "подтвердите пароль")
     private String confirmPassword;
 
 

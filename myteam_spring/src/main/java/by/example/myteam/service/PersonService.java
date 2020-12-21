@@ -1,5 +1,6 @@
 package by.example.myteam.service;
 
+import by.example.myteam.entity.ExtraInfo;
 import by.example.myteam.entity.Person;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface PersonService {
     void deletePerson(int id);
 
     Person validateAndGetPerson(Person person);
+
+    ExtraInfo saveExtraInfoOfPerson(ExtraInfo extraInfo, Person p);
 }
