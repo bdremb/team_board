@@ -8,8 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +38,7 @@ public class PersonServiceImpl implements PersonService {
         if (login.isPresent()) {
             return false;
         }
-
+        person.setExtraInfo(new ExtraInfo());
         personDAO.savePerson(person);
         return true;
     }
@@ -87,10 +85,6 @@ public class PersonServiceImpl implements PersonService {
         info.setEmail(extraInfo.getEmail());
         info.setSkype(extraInfo.getSkype());
         info.setPhoneNumber(extraInfo.getPhoneNumber());
-
         return info;
     }
-
-
-
 }

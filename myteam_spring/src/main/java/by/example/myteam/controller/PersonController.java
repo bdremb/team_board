@@ -51,7 +51,6 @@ public class PersonController {
             return "register";
         }
         if (pers.getPassword().equals(pers.getConfirmPassword())) {
-            pers.setExtraInfo(new ExtraInfo());
             if (personServise.savePerson(pers)) {
                 return "login";
             }
@@ -73,9 +72,8 @@ public class PersonController {
     public String enter(@ModelAttribute("person") Person person, Model model) {
         Person newPerson = personServise.validateAndGetPerson(person);
         if (newPerson != null) {
-            ExtraInfo extraInfo = new ExtraInfo();
             model.addAttribute("person", newPerson);
-            model.addAttribute("extrainfo", extraInfo);
+            model.addAttribute("extrainfo", new ExtraInfo());
             return "person-page";
         }
         return "redirect:/login";
@@ -89,5 +87,4 @@ public class PersonController {
         model.addAttribute("person", info.getPerson());
         return "person-page";
     }
-
 }
