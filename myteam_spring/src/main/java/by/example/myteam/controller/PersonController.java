@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.Period;
 import java.util.List;
 
 @Controller
@@ -67,6 +68,15 @@ public class PersonController {
         model.addAttribute("allPersons", pers);
         return "list-persons";
     }
+
+    @GetMapping("/persons/update/{id}")
+    public String updatePerson(@PathVariable("id") int id, Model model) {
+        Person person = personServise.getPerson(id);
+        model.addAttribute("person", person);
+        model.addAttribute("extrainfo", person.getExtraInfo());
+        return "person-page";
+    }
+
 
     @PostMapping("/login")
     public String enter(@ModelAttribute("person") Person person, Model model) {

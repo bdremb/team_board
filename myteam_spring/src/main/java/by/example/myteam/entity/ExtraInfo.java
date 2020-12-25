@@ -34,9 +34,9 @@ public class ExtraInfo {
     private Person person;
 
     public ExtraInfo() {
-        this.skype = "enter your skype";
-        this.city = "enter your city ";
-        this.phoneNumber = "enter your phone ";
+        this.skype = "null";
+        this.city = "null";
+        this.phoneNumber = "null";
         this.age = 1;
         this.email = "example@example.com";
     }
