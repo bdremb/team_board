@@ -30,7 +30,7 @@ public class ExtraInfo {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(mappedBy = "extraInfo", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "extraInfo", cascade = CascadeType.ALL, orphanRemoval = true)
     private Person person;
 
     public ExtraInfo() {

@@ -57,6 +57,6 @@ public class PersonDAOImpl implements PersonDAO {
         Query query = session.createQuery("DELETE from Person WHERE id = :personId");
         query.setParameter("personId", id);
         query.executeUpdate();
-        logger.info("DELETE PERSON completed successfully");
+        logger.info("person was deleted successfully");
     }
 }

@@ -12,9 +12,20 @@
     <tr>
 
         <th>NAME</th>
+        <th></th>
         <th> SURNAME </th>
+        <th></th>
         <th>LOGIN</th>
-
+        <th></th>
+        <th>AGE</th>
+        <th></th>
+        <th>CITY</th>
+        <th></th>
+        <th>E-MAIL</th>
+        <th></th>
+        <th>Skype</th>
+        <th></th>
+        <th>Phone number</th>
     </tr>
 
     <c:forEach var="person" items="${allPersons}">
@@ -22,8 +33,20 @@
         <tr>
 
             <td>${person.name}</td>
+            <th></th>
             <td>${person.surname}</td>
+            <th></th>
             <td>${person.login}</td>
+            <th></th>
+            <td>${person.extraInfo.age}</td>
+            <th></th>
+            <td>${person.extraInfo.city}</td>
+            <th></th>
+            <td>${person.extraInfo.email}</td>
+            <th></th>
+            <td>${person.extraInfo.skype}</td>
+            <th></th>
+            <td>${person.extraInfo.phoneNumber}</td>
 
             <td><input type="button" value="Details" onclick="window.location.href='/team/persons/ + ${person.id}'"
                        formmethod="get"></td>

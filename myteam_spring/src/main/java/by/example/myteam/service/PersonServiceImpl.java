@@ -52,7 +52,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     @Transactional
     public void deletePerson(int id) {
-        personDAO.deletePerson(id);
+         personDAO.deletePerson(id);
     }
 
     @Override

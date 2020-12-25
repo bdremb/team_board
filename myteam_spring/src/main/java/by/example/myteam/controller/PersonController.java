@@ -73,7 +73,7 @@ public class PersonController {
         Person newPerson = personServise.validateAndGetPerson(person);
         if (newPerson != null) {
             model.addAttribute("person", newPerson);
-            model.addAttribute("extrainfo", new ExtraInfo());
+            model.addAttribute("extrainfo", newPerson.getExtraInfo());
             return "person-page";
         }
         return "redirect:/login";

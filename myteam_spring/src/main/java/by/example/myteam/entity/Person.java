@@ -36,7 +36,7 @@ public class Person {
     private String confirmPassword;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "extra_info_id")
     private ExtraInfo extraInfo;
 
