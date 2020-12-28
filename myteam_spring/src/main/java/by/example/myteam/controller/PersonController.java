@@ -7,6 +7,8 @@ import by.example.myteam.service.ExtraInfoService;
 import by.example.myteam.service.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +22,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/team")
 public class PersonController {
+
     final static Logger logger = LoggerFactory.getLogger(PersonController.class);
+    private static final Marker FILE = MarkerFactory.getMarker("FILE");
     private final PersonService personServise;
     private final ExtraInfoService extraInfoService;
 
@@ -84,6 +88,7 @@ public class PersonController {
         if (newPerson != null) {
             model.addAttribute("person", newPerson);
             model.addAttribute("extrainfo", newPerson.getExtraInfo());
+            logger.info(FILE, "enter to the person page");
             return "person-page";
         }
         return "redirect:/login";
