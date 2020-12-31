@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="team_board:war">
+    <output-path>$PROJECT_DIR$/team_board/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>team_board</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="myteam_spring.war">
+      <element id="artifact" artifact-name="team_board:war exploded" />
+    </root>
+  </artifact>
+</component>

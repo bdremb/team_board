@@ -11,14 +11,8 @@
 
     <appender name="FILE"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>D:/log/info.log
-            <Filters>
-                <MarkerFilter marker="FILE" onMatch="ACCEPT" onMismatch="DENY"/>
-            </Filters>
-        </file>
-
+        <file>D:/log/info.log</file>
         <rollingPolicy
-
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
             <fileNamePattern>info.%d{yyyy-MM-dd}.log</fileNamePattern>
@@ -32,10 +26,22 @@
         </encoder>
     </appender>
 
+<!--    <turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">-->
+<!--        <Marker>marker</Marker>-->
+<!--        <OnMatch>DENY</OnMatch>-->
+<!--    </turboFilter>-->
+
+
+
     <root level="debug">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </root>
+
+<!--    <logger name="logging.logback.LoggingLogback" level="info" >-->
+<!--        <appender-ref ref="FILE" />-->
+<!--    </logger>-->
+
 
 
 </configuration>
