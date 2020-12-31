@@ -1,6 +1,6 @@
-package by.example.myteam.dao;
+package by.example.team_board.dao;
 
-import by.example.myteam.entity.Person;
+import by.example.team_board.entity.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;

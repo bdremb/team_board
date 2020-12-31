@@ -1,8 +1,8 @@
-package by.example.myteam.service;
+package by.example.team_board.service;
 
-import by.example.myteam.dao.PersonDAO;
-import by.example.myteam.entity.ExtraInfo;
-import by.example.myteam.entity.Person;
+import by.example.team_board.dao.PersonDAO;
+import by.example.team_board.entity.ExtraInfo;
+import by.example.team_board.entity.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

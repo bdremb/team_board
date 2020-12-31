@@ -1,7 +1,6 @@
-package by.example.myteam.controller;
+package by.example.team_board.controller;
 
-import by.example.myteam.entity.ExtraInfo;
-import by.example.myteam.entity.Person;
+import by.example.team_board.entity.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,14 +1,12 @@
-package by.example.myteam.controller;
+package by.example.team_board.controller;
 
 
-import by.example.myteam.entity.ExtraInfo;
-import by.example.myteam.entity.Person;
-import by.example.myteam.service.ExtraInfoService;
-import by.example.myteam.service.PersonService;
+import by.example.team_board.entity.ExtraInfo;
+import by.example.team_board.entity.Person;
+import by.example.team_board.service.ExtraInfoService;
+import by.example.team_board.service.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
-import org.slf4j.MarkerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

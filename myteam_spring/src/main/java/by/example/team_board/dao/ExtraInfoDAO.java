@@ -1,6 +1,6 @@
-package by.example.myteam.dao;
+package by.example.team_board.dao;
 
-import by.example.myteam.entity.ExtraInfo;
+import by.example.team_board.entity.ExtraInfo;
 
 public interface ExtraInfoDAO {
 

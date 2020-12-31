@@ -1,7 +1,7 @@
-package by.example.myteam.service;
+package by.example.team_board.service;
 
-import by.example.myteam.dao.ExtraInfoDAO;
-import by.example.myteam.entity.ExtraInfo;
+import by.example.team_board.dao.ExtraInfoDAO;
+import by.example.team_board.entity.ExtraInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,7 +1,6 @@
-package by.example.myteam.service;
+package by.example.team_board.service;
 
-import by.example.myteam.entity.ExtraInfo;
-import by.example.myteam.entity.Person;
+import by.example.team_board.entity.ExtraInfo;
 
 public interface ExtraInfoService {
 

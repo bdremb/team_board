@@ -1,4 +1,4 @@
-package by.example.myteam.entity;
+package by.example.team_board.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

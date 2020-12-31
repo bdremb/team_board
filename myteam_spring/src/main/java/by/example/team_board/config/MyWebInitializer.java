@@ -1,4 +1,4 @@
-package by.example.myteam.config;
+package by.example.team_board.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

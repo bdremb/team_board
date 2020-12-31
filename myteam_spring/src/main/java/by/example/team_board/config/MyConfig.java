@@ -1,4 +1,4 @@
-package by.example.myteam.config;
+package by.example.team_board.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = "by.example.myteam")
+@ComponentScan(basePackages = "by.example.team_board")
 @EnableWebMvc
 public class MyConfig {
     final static Logger logger = LoggerFactory.getLogger(MyConfig.class);
@@ -52,7 +52,7 @@ public class MyConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("by.example.myteam.entity");
+        sessionFactory.setPackagesToScan("by.example.team_board.entity");
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
