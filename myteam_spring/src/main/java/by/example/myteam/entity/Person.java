@@ -1,6 +1,5 @@
 package by.example.myteam.entity;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -35,15 +34,9 @@ public class Person {
     @Transient
     private String confirmPassword;
 
-
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "extra_info_id")
     private ExtraInfo extraInfo;
-
-    public Person() {
-    }
-
-
 
     public int getId() {
         return id;
@@ -108,6 +101,5 @@ public class Person {
     public void setExtraInfo(ExtraInfo extraInfo) {
         this.extraInfo = extraInfo;
     }
-
 
 }

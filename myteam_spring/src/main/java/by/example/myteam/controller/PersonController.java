@@ -16,47 +16,47 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.Period;
 import java.util.List;
 
 @Controller
 @RequestMapping("/team")
 public class PersonController {
-
     final static Logger logger = LoggerFactory.getLogger(PersonController.class);
-    private static final Marker FILE = MarkerFactory.getMarker("FILE");
-    private final PersonService personServise;
+
+    //private static final Marker FILE = MarkerFactory.getMarker("FILE");
+    private final PersonService personServiсe;
     private final ExtraInfoService extraInfoService;
 
     @Autowired
     public PersonController(PersonService personServise, ExtraInfoService extraInfoService) {
-        this.personServise = personServise;
+        this.personServiсe = personServise;
         this.extraInfoService = extraInfoService;
     }
 
     @GetMapping("/persons")
     public String showAllPersons(Model model) {
-        List<Person> pers = personServise.getAllPerson();
+        List<Person> pers = personServiсe.getAllPerson();
         model.addAttribute("allPersons", pers);
         return "list-persons";
     }
 
     @GetMapping("/persons/{id}")
     public String showPersonDetailsById(@PathVariable("id") int id, Model model) {
-        Person person = personServise.getPerson(id);
+        Person person = personServiсe.getPerson(id);
         model.addAttribute("person", person);
         return "person-details";
     }
+
 
     @PostMapping("/persons")
     public String saveNewPerson(@ModelAttribute("person") @Valid Person pers,
                                 BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            logger.error("binding result has errors {}", "POST MAPPING MESSAGE");
+            logger.error("binding result has errors");
             return "register";
         }
         if (pers.getPassword().equals(pers.getConfirmPassword())) {
-            if (personServise.savePerson(pers)) {
+            if (personServiсe.savePerson(pers)) {
                 return "login";
             }
         }
@@ -67,37 +67,37 @@ public class PersonController {
 
     @GetMapping("/persons/delete/{id}")
     public String deletePerson(@PathVariable("id") int id, Model model) {
-        personServise.deletePerson(id);
-        List<Person> pers = personServise.getAllPerson();
+        personServiсe.deletePerson(id);
+        List<Person> pers = personServiсe.getAllPerson(); // проверить на 2 запроса на f12
         model.addAttribute("allPersons", pers);
-        return "list-persons";
+        return "list-persons";                       //redirect
     }
 
     @GetMapping("/persons/update/{id}")
     public String updatePerson(@PathVariable("id") int id, Model model) {
-        Person person = personServise.getPerson(id);
+        Person person = personServiсe.getPerson(id);
         model.addAttribute("person", person);
-        model.addAttribute("extrainfo", person.getExtraInfo());
+        model.addAttribute("extrainfo", person.getExtraInfo());  // зачем
         return "person-page";
     }
 
 
     @PostMapping("/login")
     public String enter(@ModelAttribute("person") Person person, Model model) {
-        Person newPerson = personServise.validateAndGetPerson(person);
-        if (newPerson != null) {
+        Person newPerson = personServiсe.validateAndGetPerson(person);
+        if (newPerson != null) {                                //not null   ,Objects not null
             model.addAttribute("person", newPerson);
-            model.addAttribute("extrainfo", newPerson.getExtraInfo());
-            logger.info(FILE, "enter to the person page");
+            model.addAttribute("extrainfo", newPerson.getExtraInfo()); // так не должно быть
+            logger.info("enter to the person page");
             return "person-page";
         }
         return "redirect:/login";
     }
 
     @PostMapping("/addinfo")
-    public String saveExtraInfoOfPerson(@ModelAttribute("extrainfo") ExtraInfo extraInfo,
+    public String saveExtraInfoOfPerson(@ModelAttribute("extrainfo") ExtraInfo extraInfo,   //переделать, убрать
                                         @ModelAttribute("person") Person person, Model model) {
-        ExtraInfo info = personServise.saveExtraInfoOfPerson(extraInfo, person);
+        ExtraInfo info = personServiсe.saveExtraInfoOfPerson(extraInfo, person);
         extraInfoService.saveExtraInfo(info);
         model.addAttribute("person", info.getPerson());
         return "person-page";

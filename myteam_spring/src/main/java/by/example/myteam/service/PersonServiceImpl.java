@@ -32,7 +32,7 @@ public class PersonServiceImpl implements PersonService {
     @Transactional
     public boolean savePerson(Person person) {
         List<Person> allPerson = personDAO.getAllPerson();
-        Optional<Person> login = allPerson.stream()
+        Optional<Person> login = allPerson.stream()            // authPerson
                 .filter(p -> p.getLogin().equals(person.getLogin()))
                 .findAny();
         if (login.isPresent()) {
@@ -59,7 +59,7 @@ public class PersonServiceImpl implements PersonService {
     @Transactional
     public Person validateAndGetPerson(Person person) {
         List<Person> allPerson = personDAO.getAllPerson();
-        Optional<Person> login = allPerson.stream()
+        Optional<Person> login = allPerson.stream()             // persons
                 .filter(p -> p.getLogin().equals(person.getLogin()))
                 .findAny();
         if (login.isPresent()) {
@@ -77,9 +77,9 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public ExtraInfo saveExtraInfoOfPerson(ExtraInfo extraInfo, Person p) {
+    public ExtraInfo saveExtraInfoOfPerson(ExtraInfo extraInfo, Person p) {   //p -> person   избегать
         Person person = personDAO.getPerson(p.getId());
-        ExtraInfo info = person.getExtraInfo();
+        ExtraInfo info = person.getExtraInfo();   //apache commons
         info.setAge(extraInfo.getAge());
         info.setCity(extraInfo.getCity());
         info.setEmail(extraInfo.getEmail());

@@ -42,8 +42,8 @@ public class MyConfig {
             dataSource.setUser("root");
             dataSource.setPassword("testtest");
         } catch (PropertyVetoException e) {
-            logger.error(Arrays.toString(e.getStackTrace()), e);
-            e.printStackTrace();
+            logger.error(Arrays.toString(e.getStackTrace()));
+
         }
         return dataSource;
     }

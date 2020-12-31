@@ -27,7 +27,7 @@ public class PersonDAOImpl implements PersonDAO {
         Session session = sessionFactory.getCurrentSession();
         List<Person> persons = session.createQuery("from Person ", Person.class)
                 .getResultList();
-        logger.info("Method getAllPerson completed successfully");
+        logger.info("Method getAllPersons completed successfully");  //единый стиль
         return persons;
     }
 
@@ -35,18 +35,18 @@ public class PersonDAOImpl implements PersonDAO {
     public void savePerson(Person person) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(person);
-        logger.info("SAVE PERSON completed successfully");
+        logger.info("SAVE PERSON completed successfully");  //единый стиль
     }
 
     @Override
     public Person getPerson(int id) {
         Session session = sessionFactory.getCurrentSession();
-        Optional<Person> optionalPerson = Optional.ofNullable(session.get(Person.class, id));
-        if (optionalPerson.isPresent()) {
+        Optional<Person> optionalPerson = Optional.ofNullable(session.get(Person.class, id)); // перенести в if
+        if (optionalPerson.isPresent()) {    //ifPresent посмотреть, реализовать
             logger.info("GET PERSON completed successfully");
             return optionalPerson.get();
         } else {
-            logger.warn("GET PERSON ERROR, person with ID = " + id + " does not exist");
+            logger.warn("GET PERSON ERROR, person with ID = " + id + " does not exist"); // logback {}
         }
         return null;
     }

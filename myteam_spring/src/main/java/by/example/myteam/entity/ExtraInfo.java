@@ -21,7 +21,6 @@ public class ExtraInfo {
     @Column(name="phone_number")
     private String phoneNumber;
 
-
     @Max(value = 150)
     @Column(name = "age")
     private int age;
