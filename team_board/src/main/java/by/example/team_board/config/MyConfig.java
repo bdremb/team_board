@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.util.Arrays;
@@ -24,6 +23,10 @@ import java.util.Properties;
 @EnableWebMvc
 public class MyConfig {
     final static Logger logger = LoggerFactory.getLogger(MyConfig.class);
+    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/people?serverTimezone=Europe/Moscow";
+    private static final String USER = "root";
+    private static final String PASSWORD = "testtest";
 
     @Bean
     public ViewResolver viewResolver() {
@@ -37,10 +40,10 @@ public class MyConfig {
     public DataSource dataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
-            dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
-            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/people?serverTimezone=Europe/Moscow");
-            dataSource.setUser("root");
-            dataSource.setPassword("testtest");
+            dataSource.setDriverClass(JDBC_DRIVER);
+            dataSource.setJdbcUrl(JDBC_URL);
+            dataSource.setUser(USER);
+            dataSource.setPassword(PASSWORD);
         } catch (PropertyVetoException e) {
             logger.error(Arrays.toString(e.getStackTrace()));
 

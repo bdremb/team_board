@@ -9,6 +9,4 @@ public interface ExtraInfoService {
     boolean saveExtraInfo(ExtraInfo extraInfo);
 
     ExtraInfo getExtraInfo(int id);
-
-
 }
