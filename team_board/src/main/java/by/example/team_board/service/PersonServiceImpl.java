@@ -23,18 +23,18 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public List<Person> getAllPerson() {
-        return personDAO.getAllPerson();
+    public List<Person> getAllPersons() {
+        return personDAO.getAllPersons();
     }
 
     @Override
     @Transactional
     public boolean savePerson(Person person) {
-        List<Person> allPerson = personDAO.getAllPerson();
-        Optional<Person> login = allPerson.stream()            // authPerson
+        List<Person> persons = personDAO.getAllPersons();
+        Optional<Person> authPerson = persons.stream()            // authPerson
                 .filter(p -> p.getLogin().equals(person.getLogin()))
                 .findAny();
-        if (login.isPresent()) {
+        if (authPerson.isPresent()) {
             return false;
         }
         person.setExtraInfo(new ExtraInfo());
@@ -51,22 +51,22 @@ public class PersonServiceImpl implements PersonService {
     @Override
     @Transactional
     public void deletePerson(int id) {
-         personDAO.deletePerson(id);
+        personDAO.deletePerson(id);
     }
 
     @Override
     @Transactional
     public Person validateAndGetPerson(Person person) {
-        List<Person> allPerson = personDAO.getAllPerson();
-        Optional<Person> login = allPerson.stream()             // persons
+        List<Person> allPersons = personDAO.getAllPersons();
+        Optional<Person> persons = allPersons.stream()             // persons
                 .filter(p -> p.getLogin().equals(person.getLogin()))
                 .findAny();
-        if (login.isPresent()) {
-            Person newPerson = login.get();
+        if (persons.isPresent()) {
+            Person newPerson = persons.get();
             String password = newPerson.getPassword();
             if (person.getPassword().equals(password)) {
                 logger.info("Successful. Login == Password");
-                return login.get();
+                return persons.get();
             }
         }
         logger.error("Person error. Password and login are not valid. Method returned null...");
@@ -75,9 +75,8 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public ExtraInfo saveExtraInfoOfPerson(ExtraInfo extraInfo, Person p) {   //p -> person   избегать
-        Person person = personDAO.getPerson(p.getId());
-        ExtraInfo info = person.getExtraInfo();   //apache commons
+    public ExtraInfo saveExtraInfoOfPerson(ExtraInfo extraInfo, Person person) {
+        ExtraInfo info = personDAO.getPerson(person.getId()).getExtraInfo();   //apache commons
         info.setAge(extraInfo.getAge());
         info.setCity(extraInfo.getCity());
         info.setEmail(extraInfo.getEmail());

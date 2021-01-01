@@ -22,7 +22,7 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public List<Person> getAllPerson() {
+    public List<Person> getAllPersons() {
         Session session = sessionFactory.getCurrentSession();
         List<Person> persons = session.createQuery("from Person ", Person.class)
                 .getResultList();

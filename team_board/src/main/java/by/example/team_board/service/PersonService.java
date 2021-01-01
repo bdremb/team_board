@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PersonService {
 
-    List<Person> getAllPerson();
+    List<Person> getAllPersons();
 
     boolean savePerson(Person person);
 

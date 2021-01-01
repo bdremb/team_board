@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -25,39 +24,38 @@ import java.util.List;
 public class PersonController {
     final static Logger logger = LoggerFactory.getLogger(PersonController.class);
 
-    private final PersonService personServiсe;
+    private final PersonService personService;
     private final ExtraInfoService extraInfoService;
 
     @Autowired
-    public PersonController(PersonService personServise, ExtraInfoService extraInfoService) {
-        this.personServiсe = personServise;
+    public PersonController(PersonService personService, ExtraInfoService extraInfoService) {
+        this.personService = personService;
         this.extraInfoService = extraInfoService;
     }
 
     @GetMapping("/persons")
     public String showAllPersons(Model model) {
-        List<Person> pers = personServiсe.getAllPerson();
-        model.addAttribute("allPersons", pers);
+        List<Person> persons = personService.getAllPersons();
+        model.addAttribute("allPersons", persons);
         return "list-persons";
     }
 
     @GetMapping("/persons/{id}")
     public String showPersonDetailsById(@PathVariable("id") int id, Model model) {
-        Person person = personServiсe.getPerson(id);
+        Person person = personService.getPerson(id);
         model.addAttribute("person", person);
         return "person-details";
     }
 
-
     @PostMapping("/persons")
-    public String saveNewPerson(@ModelAttribute("person") @Valid Person pers,
+    public String saveNewPerson(@ModelAttribute("person") @Valid Person person,
                                 BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             logger.error("binding result has errors");
             return "register";
         }
-        if (pers.getPassword().equals(pers.getConfirmPassword())) {
-            if (personServiсe.savePerson(pers)) {
+        if (person.getPassword().equals(person.getConfirmPassword())) {
+            if (personService.savePerson(person)) {
                 return "login";
             }
         }
@@ -68,24 +66,21 @@ public class PersonController {
 
     @GetMapping("/persons/delete/{id}")
     public String deletePerson(@PathVariable("id") int id, Model model) {
-        personServiсe.deletePerson(id);
-        List<Person> pers = personServiсe.getAllPerson(); // проверить на 2 запроса на f12
-        model.addAttribute("allPersons", pers);
-        return "list-persons";                       //redirect
+        personService.deletePerson(id);
+        return showAllPersons(model);
     }
 
     @GetMapping("/persons/update/{id}")
     public String updatePerson(@PathVariable("id") int id, Model model) {
-        Person person = personServiсe.getPerson(id);
+        Person person = personService.getPerson(id);
         model.addAttribute("person", person);
         model.addAttribute("extrainfo", person.getExtraInfo());  // зачем
         return "person-page";
     }
 
-
     @PostMapping("/login")
     public String enter(@ModelAttribute("person") Person person, Model model) {
-        Person newPerson = personServiсe.validateAndGetPerson(person);
+        Person newPerson = personService.validateAndGetPerson(person);
         if (newPerson != null) {                                //not null   ,Objects not null
             model.addAttribute("person", newPerson);
             model.addAttribute("extrainfo", newPerson.getExtraInfo()); // так не должно быть
@@ -98,7 +93,7 @@ public class PersonController {
     @PostMapping("/addinfo")
     public String saveExtraInfoOfPerson(@ModelAttribute("extrainfo") ExtraInfo extraInfo,   //переделать, убрать
                                         @ModelAttribute("person") Person person, Model model) {
-        ExtraInfo info = personServiсe.saveExtraInfoOfPerson(extraInfo, person);
+        ExtraInfo info = personService.saveExtraInfoOfPerson(extraInfo, person);
         extraInfoService.saveExtraInfo(info);
         model.addAttribute("person", info.getPerson());
         return "person-page";

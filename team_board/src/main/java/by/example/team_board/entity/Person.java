@@ -22,14 +22,14 @@ public class Person {
     private int id;
 
     @Column(name = "name")
-    @NotBlank(message = "Укажите Ваше имя")
+    @NotBlank(message = "Enter your name")
     private String name;
 
     @Column(name = "surname")
-    @NotBlank(message = "Укажите Вашу фамилию")
+    @NotBlank(message = "Enter your surname")
     private String surname;
 
-    @NotBlank(message = "Придумайте логин")
+    @NotBlank(message = "Enter login")
     @Column(name = "login")
     private String login;
 
