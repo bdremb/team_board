@@ -32,7 +32,7 @@ public class PersonServiceImpl implements PersonService {
     @Transactional
     public boolean savePerson(Person person) {
         List<Person> persons = personDAO.getAllPersons();
-        Optional<Person> authPerson = persons.stream()            // authPerson
+        Optional<Person> authPerson = persons.stream()
                 .filter(p -> p.getLogin().equals(person.getLogin()))
                 .findAny();
         if (authPerson.isPresent()) {
@@ -46,7 +46,12 @@ public class PersonServiceImpl implements PersonService {
     @Override
     @Transactional
     public Person getPerson(int id) {
-        return personDAO.getPerson(id);
+        Person person = personDAO.getPerson(id);
+        if (person != null) {
+            return person;
+        }
+        logger.info("person with id = {} does not exists", id);
+        return null;
     }
 
     @Override

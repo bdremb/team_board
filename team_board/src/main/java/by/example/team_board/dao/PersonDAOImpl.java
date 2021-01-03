@@ -23,38 +23,27 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public List<Person> getAllPersons() {
-        Session session = sessionFactory.getCurrentSession();
-        List<Person> persons = session.createQuery("from Person ", Person.class)
+        return sessionFactory.getCurrentSession()
+                .createQuery("from Person ", Person.class)
                 .getResultList();
-        logger.info("method getAllPersons completed successfully");  //единый стиль
-        return persons;
     }
 
     @Override
     public void savePerson(Person person) {
-        Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(person);
-        logger.info("method savePerson completed successfully");  //единый стиль
+        sessionFactory.getCurrentSession().saveOrUpdate(person);
+        logger.info("person was saved successfully");
     }
 
     @Override
     public Person getPerson(int id) {
-        Session session = sessionFactory.getCurrentSession();
-        Optional<Person> optionalPerson = Optional.ofNullable(session.get(Person.class, id)); // перенести в if
-        if (optionalPerson.isPresent()) {    //ifPresent посмотреть, реализовать
-            logger.info("method getPerson completed successfully");
-            return optionalPerson.get();
-        } else {
-            logger.warn("person with ID = {} does not exist", id); // logback {}
-        }
-        return null;
+        return Optional.ofNullable(sessionFactory.getCurrentSession()
+                .get(Person.class, id)).orElse(null);
     }
 
     @Override
     public void deletePerson(int id) {
         Session session = sessionFactory.getCurrentSession();
-        Person deletedPerson = session.get(Person.class, id);
-        session.delete(deletedPerson);
+        session.delete(session.get(Person.class, id));
         logger.info("person was deleted successfully");
     }
 }
