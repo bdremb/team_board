@@ -1,6 +1,5 @@
 package by.example.team_board.controller;
 
-import by.example.team_board.entity.ExtraInfo;
 import by.example.team_board.entity.Person;
 import by.example.team_board.service.PersonService;
 import org.slf4j.Logger;
@@ -71,7 +70,6 @@ public class PersonController {
     public String updatePerson(@PathVariable("id") int id, Model model) {
         Person person = personService.getPerson(id);
         model.addAttribute("person", person);
-        model.addAttribute("extrainfo", person.getExtraInfo());  // зачем
         return "person-page";
     }
 
@@ -80,7 +78,6 @@ public class PersonController {
         Person newPerson = personService.validateAndGetPerson(person);
         if (newPerson != null) {                                //not null   ,Objects not null
             model.addAttribute("person", newPerson);
-            model.addAttribute("extrainfo", newPerson.getExtraInfo()); // так не должно быть
             logger.info("enter to the person page");
             return "person-page";
         }
@@ -88,11 +85,9 @@ public class PersonController {
     }
 
     @PostMapping("/addinfo")
-    public String saveExtraInfoOfPerson(@ModelAttribute("extrainfo") ExtraInfo extraInfo,   //переделать, убрать
-                                        @ModelAttribute("person") Person person, Model model) {
-        ExtraInfo info = personService.saveExtraInfoOfPerson(extraInfo, person);
-        person.setExtraInfo(info);
-        model.addAttribute("person", info.getPerson());
+    public String saveExtraInfoOfPerson(@ModelAttribute("person") Person person, Model model) {
+        Person newPerson = personService.saveExtraInfoOfPerson(person);
+        model.addAttribute("person", newPerson);
         return "person-page";
     }
 }

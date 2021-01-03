@@ -1,7 +1,6 @@
 package by.example.team_board.service;
 
 import by.example.team_board.dao.PersonDAO;
-import by.example.team_board.entity.ExtraInfo;
 import by.example.team_board.entity.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +35,6 @@ public class PersonServiceImpl implements PersonService {
                 .anyMatch(p -> p.getLogin().equals(person.getLogin()))) {
             return false;
         }
-        person.setExtraInfo(new ExtraInfo());
         personDAO.savePerson(person);
         return true;
     }
@@ -74,13 +72,10 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public ExtraInfo saveExtraInfoOfPerson(ExtraInfo extraInfo, Person person) {
-        ExtraInfo info = personDAO.getPerson(person.getId()).getExtraInfo();   //apache commons
-        info.setAge(extraInfo.getAge());
-        info.setCity(extraInfo.getCity());
-        info.setEmail(extraInfo.getEmail());
-        info.setSkype(extraInfo.getSkype());
-        info.setPhoneNumber(extraInfo.getPhoneNumber());
-        return info;
+    public Person saveExtraInfoOfPerson(Person person) {
+        Person newPerson = personDAO.getPerson(person.getId());
+        newPerson.setExtraInfo(person.getExtraInfo());
+        personDAO.savePerson(newPerson);
+        return newPerson;
     }
 }
