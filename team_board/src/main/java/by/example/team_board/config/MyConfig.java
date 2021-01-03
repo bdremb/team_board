@@ -3,9 +3,11 @@ package by.example.team_board.config;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -19,15 +21,20 @@ import java.util.Arrays;
 import java.util.Properties;
 
 @Configuration
+@PropertySource("classpath:myApp.properties")
 @EnableTransactionManagement
 @ComponentScan(basePackages = "by.example.team_board")
 @EnableWebMvc
 public class MyConfig {
     final static Logger logger = LoggerFactory.getLogger(MyConfig.class);
-    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/people?serverTimezone=Europe/Moscow";
-    private static final String USER = "root";
-    private static final String PASSWORD = "testtest";
+    @Value("${jdbc.driver}")
+    private String jdbcDriver;
+    @Value("${jdbc.url}")
+    private String jdbcUrl;
+    @Value("${jdbc.user}")
+    private String user;
+    @Value("${jdbc.password}")
+    private String password;
 
     @Bean
     public ViewResolver viewResolver() {
@@ -41,10 +48,10 @@ public class MyConfig {
     public DataSource dataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
-            dataSource.setDriverClass(JDBC_DRIVER);
-            dataSource.setJdbcUrl(JDBC_URL);
-            dataSource.setUser(USER);
-            dataSource.setPassword(PASSWORD);
+            dataSource.setDriverClass(jdbcDriver);
+            dataSource.setJdbcUrl(jdbcUrl);
+            dataSource.setUser(user);
+            dataSource.setPassword(password);
         } catch (PropertyVetoException e) {
             logger.error(Arrays.toString(e.getStackTrace()));
 
