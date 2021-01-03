@@ -16,5 +16,5 @@ public interface PersonService {
 
     Person validateAndGetPerson(Person person);
 
-    Person saveExtraInfoOfPerson(Person person);
+    Person updateExtraInfoOfPerson(Person person);
 }

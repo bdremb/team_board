@@ -85,9 +85,8 @@ public class PersonController {
     }
 
     @PostMapping("/addinfo")
-    public String saveExtraInfoOfPerson(@ModelAttribute("person") Person person, Model model) {
-        Person newPerson = personService.saveExtraInfoOfPerson(person);
-        model.addAttribute("person", newPerson);
+    public String updateExtraInfoOfPerson(@ModelAttribute("person") Person person, Model model) {
+        model.addAttribute("person", personService.updateExtraInfoOfPerson(person));
         return "person-page";
     }
 }

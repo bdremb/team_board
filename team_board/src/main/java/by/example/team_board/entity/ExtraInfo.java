@@ -1,6 +1,5 @@
 package by.example.team_board.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,41 +16,33 @@ public class ExtraInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private int id;
 
     @Column(name = "skype")
-    private String skype;
+    private String skype = "null";
 
-    @Column(name="city")
-    private String city;
+    @Column(name = "city")
+    private String city = "null";
 
-    @Column(name="phone_number")
-    private String phoneNumber;
+    @Column(name = "phone_number")
+    private String phoneNumber = "null";
 
     @Max(value = 150)
     @Column(name = "age")
-    private int age;
+    private int age = 1;
 
     @Email(message = "Email is not valid")
     @Column(name = "email")
-    private String email;
+    private String email = "example@example.com";
 
-    @OneToOne(mappedBy = "extraInfo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "extraInfo")
     private Person person;
 
-    public ExtraInfo() {
-        this.skype = "null";
-        this.city = "null";
-        this.phoneNumber = "null";
-        this.age = 1;
-        this.email = "example@example.com";
-    }
-
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -72,10 +72,11 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public Person saveExtraInfoOfPerson(Person person) {
+    public Person updateExtraInfoOfPerson(Person person) {
         Person newPerson = personDAO.getPerson(person.getId());
+        int oldExtraInfoId = newPerson.getExtraInfo().getId();
         newPerson.setExtraInfo(person.getExtraInfo());
-        personDAO.savePerson(newPerson);
+        personDAO.updatePerson(newPerson, oldExtraInfoId);
         return newPerson;
     }
 }
