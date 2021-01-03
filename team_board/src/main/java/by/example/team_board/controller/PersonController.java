@@ -2,7 +2,6 @@ package by.example.team_board.controller;
 
 import by.example.team_board.entity.ExtraInfo;
 import by.example.team_board.entity.Person;
-import by.example.team_board.service.ExtraInfoService;
 import by.example.team_board.service.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,12 +24,11 @@ public class PersonController {
     final static Logger logger = LoggerFactory.getLogger(PersonController.class);
 
     private final PersonService personService;
-    private final ExtraInfoService extraInfoService;
+
 
     @Autowired
-    public PersonController(PersonService personService, ExtraInfoService extraInfoService) {
+    public PersonController(PersonService personService) {
         this.personService = personService;
-        this.extraInfoService = extraInfoService;
     }
 
     @GetMapping("/persons")
@@ -59,7 +57,7 @@ public class PersonController {
                 return "login";
             }
         }
-        model.addAttribute("info", "Измените логин или проверьте правильность подтверждения пароля");
+        model.addAttribute("info", "Change your username or check if your password is correct");
         model.addAttribute("page", "/register");
         return "error-page";
     }
@@ -94,7 +92,7 @@ public class PersonController {
     public String saveExtraInfoOfPerson(@ModelAttribute("extrainfo") ExtraInfo extraInfo,   //переделать, убрать
                                         @ModelAttribute("person") Person person, Model model) {
         ExtraInfo info = personService.saveExtraInfoOfPerson(extraInfo, person);
-        extraInfoService.saveExtraInfo(info);
+        person.setExtraInfo(info);
         model.addAttribute("person", info.getPerson());
         return "person-page";
     }

@@ -8,12 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class PersonServiceImpl implements PersonService {
-    final static Logger logger = LoggerFactory.getLogger("Person Service");
+    final static Logger logger = LoggerFactory.getLogger(PersonServiceImpl.class);
     private final PersonDAO personDAO;
 
     @Autowired

@@ -43,7 +43,7 @@ public class Person {
     @Transient
     private String confirmPassword;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "extra_info_id")
     private ExtraInfo extraInfo;
 

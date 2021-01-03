@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import javax.persistence.Query;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +26,7 @@ public class PersonDAOImpl implements PersonDAO {
         Session session = sessionFactory.getCurrentSession();
         List<Person> persons = session.createQuery("from Person ", Person.class)
                 .getResultList();
-        logger.info("Method getAllPersons completed successfully");  //единый стиль
+        logger.info("method getAllPersons completed successfully");  //единый стиль
         return persons;
     }
 
@@ -34,7 +34,7 @@ public class PersonDAOImpl implements PersonDAO {
     public void savePerson(Person person) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(person);
-        logger.info("SAVE PERSON completed successfully");  //единый стиль
+        logger.info("method savePerson completed successfully");  //единый стиль
     }
 
     @Override
@@ -42,10 +42,10 @@ public class PersonDAOImpl implements PersonDAO {
         Session session = sessionFactory.getCurrentSession();
         Optional<Person> optionalPerson = Optional.ofNullable(session.get(Person.class, id)); // перенести в if
         if (optionalPerson.isPresent()) {    //ifPresent посмотреть, реализовать
-            logger.info("GET PERSON completed successfully");
+            logger.info("method getPerson completed successfully");
             return optionalPerson.get();
         } else {
-            logger.warn("GET PERSON ERROR, person with ID = " + id + " does not exist"); // logback {}
+            logger.warn("person with ID = {} does not exist", id); // logback {}
         }
         return null;
     }
@@ -53,9 +53,8 @@ public class PersonDAOImpl implements PersonDAO {
     @Override
     public void deletePerson(int id) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("DELETE from Person WHERE id = :personId");
-        query.setParameter("personId", id);
-        query.executeUpdate();
+        Person deletedPerson = session.get(Person.class, id);
+        session.delete(deletedPerson);
         logger.info("person was deleted successfully");
     }
 }

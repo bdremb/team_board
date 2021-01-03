@@ -54,7 +54,6 @@ public class MyConfig {
             dataSource.setPassword(password);
         } catch (PropertyVetoException e) {
             logger.error(Arrays.toString(e.getStackTrace()));
-
         }
         return dataSource;
     }
