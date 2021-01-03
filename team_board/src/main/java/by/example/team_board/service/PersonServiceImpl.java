@@ -31,11 +31,9 @@ public class PersonServiceImpl implements PersonService {
     @Override
     @Transactional
     public boolean savePerson(Person person) {
-        List<Person> persons = personDAO.getAllPersons();
-        Optional<Person> authPerson = persons.stream()
-                .filter(p -> p.getLogin().equals(person.getLogin()))
-                .findAny();
-        if (authPerson.isPresent()) {
+        if (personDAO.getAllPersons()
+                .stream()
+                .anyMatch(p -> p.getLogin().equals(person.getLogin()))) {
             return false;
         }
         person.setExtraInfo(new ExtraInfo());
@@ -63,17 +61,12 @@ public class PersonServiceImpl implements PersonService {
     @Override
     @Transactional
     public Person validateAndGetPerson(Person person) {
-        List<Person> allPersons = personDAO.getAllPersons();
-        Optional<Person> persons = allPersons.stream()             // persons
+        Optional<Person> persons = personDAO.getAllPersons().stream()
                 .filter(p -> p.getLogin().equals(person.getLogin()))
                 .findAny();
-        if (persons.isPresent()) {
-            Person newPerson = persons.get();
-            String password = newPerson.getPassword();
-            if (person.getPassword().equals(password)) {
-                logger.info("Successful. Login == Password");
-                return persons.get();
-            }
+        if (persons.isPresent() && (person.getPassword().equals(persons.get().getPassword()))) {
+            logger.info("Successful. Login == Password");
+            return persons.get();
         }
         logger.error("Person error. Password and login are not valid. Method returned null...");
         return null;
