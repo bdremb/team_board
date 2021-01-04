@@ -13,8 +13,6 @@
         <th><b>Name</b></th>
         <th><b>Login</b></th>
     </tr>
-
-
     <c:form modelAttribute="person">
         <tr>
             <td>${person.name} </td>
@@ -23,8 +21,6 @@
         </tr>
 
     </c:form>
-
-
 </table>
 
 <td><input style="color: coral" type="button" value="Delete" onclick="window.location.href='/team/persons/delete/ + ${person.id}'"></td><br>

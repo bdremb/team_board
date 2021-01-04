@@ -10,7 +10,6 @@
 <h1 style="color: blue" align="center">MyTeam</h1>
 <table>
     <tr>
-
         <th>NAME</th>
         <th>   </th>
         <th> SURNAME </th>
@@ -29,9 +28,7 @@
     </tr>
 
     <c:forEach var="person" items="${allPersons}">
-
         <tr>
-
             <td>${person.name}</td>
             <th>  </th>
             <td>${person.surname}</td>

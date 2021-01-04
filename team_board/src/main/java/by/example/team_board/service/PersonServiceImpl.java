@@ -77,7 +77,7 @@ public class PersonServiceImpl implements PersonService {
         Person newPerson = personDAO.getPerson(person.getId());
         int oldExtraInfoId = newPerson.getExtraInfo().getId();
         newPerson.setExtraInfo(person.getExtraInfo());
-        personDAO.updatePerson(newPerson, oldExtraInfoId);
+        personDAO.updateExtraInfoOfPerson(newPerson, oldExtraInfoId);
         return newPerson;
     }
 }

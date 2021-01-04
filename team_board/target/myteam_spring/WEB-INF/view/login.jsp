@@ -26,10 +26,8 @@
     </form:form>
 </table>
 
-
 <td><input type="button" value="START PAGE" onclick="window.location.href='/'"></td>
 <br>
-
 
 </body>
 </html>

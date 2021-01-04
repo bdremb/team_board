@@ -9,7 +9,7 @@ public interface PersonDAO {
 
     void savePerson(Person person);
 
-    void updatePerson(Person person, int extraInfoId);
+    void updateExtraInfoOfPerson(Person person, int extraInfoId);
 
     Person getPerson(int id);
 
