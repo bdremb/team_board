@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -43,7 +44,7 @@ public class PersonServiceImpl implements PersonService {
     @Transactional
     public Person getPerson(int id) {
         Person person = personDAO.getPerson(id);
-        if (person != null) {
+        if (Objects.nonNull(person)) {
             return person;
         }
         logger.info("person with id = {} does not exists", id);

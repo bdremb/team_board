@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/team")
@@ -76,7 +77,7 @@ public class PersonController {
     @PostMapping("/login")
     public String enter(@ModelAttribute("person") Person person, Model model) {
         Person newPerson = personService.validateAndGetPerson(person);
-        if (newPerson != null) {                                //not null   ,Objects not null
+        if (Objects.nonNull(newPerson)) {
             model.addAttribute("person", newPerson);
             logger.info("enter to the person page");
             return "person-page";
