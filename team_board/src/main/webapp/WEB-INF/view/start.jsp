@@ -4,8 +4,8 @@
     <title>Start page</title>
 
 </head>
-<body style="background-color: #e5d0b4">
 
+<body style="background-color: #e5d0b4">
 <h1 style="color: blue" align="center">MyTeam</h1>
 
 <div class="body_container">
@@ -17,7 +17,5 @@
         </td>
     </table>
 </div>
-
-
 </body>
 </html>

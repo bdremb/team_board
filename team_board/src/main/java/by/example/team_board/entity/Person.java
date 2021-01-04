@@ -23,21 +23,21 @@ public class Person {
     private int id;
 
     @Column(name = "name")
-    @NotBlank(message = "Enter your name")
+    @NotBlank(message = "enter your name")
     private String name;
 
     @Column(name = "surname")
-    @NotBlank(message = "Enter your surname")
+    @NotBlank(message = "enter your surname")
     private String surname;
 
-    @NotBlank(message = "Enter login")
+    @NotBlank(message = "enter login")
     @Column(name = "login")
     private String login;
 
     @Column(name = "gender")
     private String gender;
 
-    @Size(min = 2, max = 50, message = "Password length from 2 to 50 characters")
+    @Size(min = 2, max = 50, message = "password length from 2 to 50 characters")
     @Column(name = "password")
     private String password;
 

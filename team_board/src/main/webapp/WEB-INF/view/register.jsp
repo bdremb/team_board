@@ -5,6 +5,7 @@
 <head>
     <title>Registration</title>
 </head>
+
 <body style="background-color: antiquewhite">
 <h1 style="color: blue" align="center">MyTeam</h1>
 <br>
@@ -16,7 +17,6 @@
         <th align="left">Имя:</th>
         <td><form:input path="name"/></td>
         <th align="left"><form:errors cssStyle="color: orangered" path="name"/></th>
-
     </tr>
     <tr>
         <th align="left">Фамилия:</th>
@@ -26,9 +26,7 @@
     <tr>
         <th> мужчина <form:radiobutton path="gender" value="man"/>
             женщина <form:radiobutton path="gender" value="woman"/></th>
-
     </tr>
-
     <tr>
         <th align="left">Логин:</th>
         <td><form:input path="login"/></td>
@@ -38,7 +36,6 @@
         <td></td>
         <td>Введите пароль и запомните его.</td>
     </tr>
-
     <tr>
         <th align="left">Пароль:</th>
         <td><form:password path="password"/></td>
@@ -47,17 +44,13 @@
     <tr>
         <th align="left">Потдвердите пароль:</th>
         <td><form:password path="confirmPassword"/></td>
-     </tr>
-
+    </tr>
     <td>
         <input type="submit" value="Register">
     </td>
     </form:form>
-
-
 </table>
 <td><input type="button" value="START PAGE" onclick="window.location.href='/'"></td>
 <br>
-
 </body>
 </html>

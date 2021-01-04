@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.Properties;
 
 @Configuration
-@PropertySource("classpath:myApp.properties")
+@PropertySource("classpath:teamBoard.properties")
 @EnableTransactionManagement
 @ComponentScan(basePackages = "by.example.team_board")
 @EnableWebMvc

@@ -63,7 +63,7 @@ public class PersonServiceImpl implements PersonService {
                 .filter(p -> p.getLogin().equals(person.getLogin()))
                 .findAny();
         if (persons.isPresent() && (person.getPassword().equals(persons.get().getPassword()))) {
-            logger.info("Successful. Login == Password");
+            logger.info("successful, login matches password");
             return persons.get();
         }
         logger.error("Person error. Password and login are not valid. Method returned null...");

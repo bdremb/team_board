@@ -31,7 +31,7 @@ public class ExtraInfo {
     @Column(name = "age")
     private int age = 1;
 
-    @Email(message = "Email is not valid")
+    @Email(message = "email is not valid")
     @Column(name = "email")
     private String email = "example@example.com";
 
