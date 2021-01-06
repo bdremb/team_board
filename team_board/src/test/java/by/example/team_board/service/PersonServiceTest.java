@@ -34,9 +34,6 @@ public class PersonServiceTest {
     @Test
     public void testGetAllPersons() {
         List<Person> personList = personService.getAllPersons();
-        for (Person person : personList) {
-            System.out.println(person.getLogin() + " " + person.getGender());
-        }
         Assert.assertEquals(personList.get(0).getName(), "Sergey");
         Assert.assertEquals(personList.get(1).getExtraInfo().getAge(), 12);
     }
