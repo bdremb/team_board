@@ -1,40 +1,31 @@
 package by.example.team_board.service;
 
-import by.example.team_board.entity.ExtraInfo;
+import by.example.team_board.dao.PersonDAOImplTest;
 import by.example.team_board.entity.Person;
+import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Test;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
+@Service
 public class PersonServiceTest {
-    private static List<Person> personDAO;
+    private PersonDAOImplTest personDAO;
+
 
     @BeforeClass
     public static void setUp() {
-        personDAO = new ArrayList<>();
-        Person person1 = new Person();
-        Person person2 = new Person();
-        Person person3 = new Person();
-
-        ExtraInfo extraInfo1 = new ExtraInfo();
-        ExtraInfo extraInfo2 = new ExtraInfo();
-        ExtraInfo extraInfo3 = new ExtraInfo();
-
-        person1.setExtraInfo(extraInfo1);
-        person2.setExtraInfo(extraInfo2);
-        person3.setExtraInfo(extraInfo3);
-
-        personDAO.add(person1);
-        personDAO.add(person2);
-        personDAO.add(person3);
 
     }
 
+    @Test
+    @Transactional
     public void testGetAllPersons() {
-
-        // List<Person> personList =  personDAO.getAllPersons();
+        List<Person> personList = personDAO.getAllPersons();
+        Assert.assertEquals(personList, null);
+       // Assert.assertEquals(expected, actual);  //ожидаемое, актуальное значения
     }
 }
 
