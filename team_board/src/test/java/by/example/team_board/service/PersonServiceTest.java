@@ -49,6 +49,13 @@ public class PersonServiceTest {
     }
 
     @Test
+    public void testValidateAndGetPerson() {
+        Person person2 = personService.getPerson(2);
+        Assert.assertEquals(person2, personService.validateAndGetPerson(person2));
+        Assert.assertNull(personService.validateAndGetPerson(person));
+    }
+
+    @Test
     public void testSaveAndDeletePerson() {
         boolean result = personService.savePerson(person);
         Assert.assertTrue(result);
