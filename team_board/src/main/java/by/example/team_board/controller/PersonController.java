@@ -1,5 +1,6 @@
 package by.example.team_board.controller;
 
+import by.example.team_board.entity.ExtraInfo;
 import by.example.team_board.entity.Person;
 import by.example.team_board.service.PersonService;
 import org.slf4j.Logger;
@@ -52,6 +53,7 @@ public class PersonController {
             return "register";
         }
         if (person.getPassword().equals(person.getConfirmPassword())) {
+            person.setExtraInfo(new ExtraInfo());
             if (personService.savePerson(person)) {
                 return "login";
             }
