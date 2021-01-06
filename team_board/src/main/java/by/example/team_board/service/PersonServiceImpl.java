@@ -5,6 +5,7 @@ import by.example.team_board.entity.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,7 @@ public class PersonServiceImpl implements PersonService {
     private final PersonDAO personDAO;
 
     @Autowired
-    public PersonServiceImpl(PersonDAO personDAO) {
+    public PersonServiceImpl(@Qualifier("personDAOImpl") PersonDAO personDAO) {
         this.personDAO = personDAO;
     }
 

@@ -34,8 +34,8 @@ public class PersonServiceTest {
 
     public void testGetAllPersons() {
 
-       // List<Person> personList =  personDAO.getAllPersons();
-        }
+        // List<Person> personList =  personDAO.getAllPersons();
     }
-
 }
+
+
