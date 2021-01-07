@@ -1,6 +1,7 @@
 package by.example.team_board.service;
 
 import by.example.team_board.dao.PersonDAO;
+import by.example.team_board.entity.ExtraInfo;
 import by.example.team_board.entity.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -76,9 +77,8 @@ public class PersonServiceImpl implements PersonService {
     @Transactional
     public Person updateExtraInfoOfPerson(Person person) {
         Person newPerson = personDAO.getPerson(person.getId());
-        int oldExtraInfoId = newPerson.getExtraInfo().getId();
-        newPerson.setExtraInfo(person.getExtraInfo());
-        personDAO.updateExtraInfoOfPerson(newPerson, oldExtraInfoId);
+        ExtraInfo extraInfo = person.getExtraInfo();
+        newPerson.setExtraInfo(extraInfo);
         return newPerson;
     }
 }

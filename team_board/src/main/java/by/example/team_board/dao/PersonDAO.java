@@ -9,8 +9,6 @@ public interface PersonDAO {
 
     void savePerson(Person person);
 
-    void updateExtraInfoOfPerson(Person person, int extraInfoId);
-
     Person getPerson(int id);
 
     void deletePerson(int id);
