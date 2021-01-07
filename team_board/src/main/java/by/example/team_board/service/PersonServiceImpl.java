@@ -76,9 +76,8 @@ public class PersonServiceImpl implements PersonService {
     @Override
     @Transactional
     public Person updateExtraInfoOfPerson(Person person) {
-        Person newPerson = personDAO.getPerson(person.getId());
-        ExtraInfo extraInfo = person.getExtraInfo();
-        newPerson.setExtraInfo(extraInfo);
-        return newPerson;
+        Person updatedPerson = personDAO.getPerson(person.getId());
+        updatedPerson.setExtraInfo(person.getExtraInfo());
+        return updatedPerson;
     }
 }
