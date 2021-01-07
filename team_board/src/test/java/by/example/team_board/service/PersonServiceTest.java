@@ -36,6 +36,7 @@ public class PersonServiceTest {
         List<Person> personList = personService.getAllPersons();
         Assert.assertEquals(personList.get(0).getName(), "Sergey");
         Assert.assertEquals(personList.get(1).getExtraInfo().getAge(), 12);
+        Assert.assertEquals(personList.get(2).getExtraInfo().getEmail(), "dd@dd.com");
     }
 
     @Test
@@ -60,6 +61,25 @@ public class PersonServiceTest {
         Assert.assertFalse(result2);
         personService.deletePerson(person.getId());
         Assert.assertNull(personService.getPerson(person.getId()));
+    }
+
+    @Test
+    public void testUpdateExtraInfoOfPerson() {
+        Person person2 = new Person();
+        person2.setExtraInfo(new ExtraInfo());
+        person2.setName("John");
+        person2.setLogin("johnLogin987");
+        personService.savePerson(person2);
+        int id = person2.getId();
+        Person newPerson = personService.getPerson(id);
+        ExtraInfo newExtraInfo = newPerson.getExtraInfo();
+
+        newExtraInfo.setCity("AbCdEf");
+        newPerson.setExtraInfo(newExtraInfo);
+
+        personService.updateExtraInfoOfPerson(newPerson);
+        Assert.assertEquals(personService.getPerson(id).getExtraInfo().getCity(), "AbCdEf");
+        personService.deletePerson(id);
     }
 
     @AfterClass
