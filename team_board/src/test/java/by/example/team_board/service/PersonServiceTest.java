@@ -65,6 +65,9 @@ public class PersonServiceTest {
 
     @Test
     public void testUpdateExtraInfoOfPerson() {
+
+                              //TODO refactor this method
+
         Person person2 = new Person();
         person2.setExtraInfo(new ExtraInfo());
         person2.setName("John");
