@@ -9,11 +9,9 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public class PersonServiceTest {
     private static SessionFactory factory;
     private static PersonService personService;
