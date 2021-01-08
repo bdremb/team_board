@@ -65,26 +65,30 @@ public class PersonServiceTest {
 
     @Test
     public void testUpdateExtraInfoOfPerson() {
-
                               //TODO refactor this method
 
-//        Person person2 = new Person();
-//        person2.setExtraInfo(new ExtraInfo());
-//        person2.getExtraInfo().setCity("ExampleCity");
-//        person2.setName("John");
-//        person2.setLogin("johnLogin987");
-//        personService.savePerson(person2);
-//        int id = person2.getId();
-//
-//        ExtraInfo newExtraInfo = person2.getExtraInfo();
-//       // Assert.assertEquals(personService.getPerson(id).getExtraInfo().getCity(), "ExampleCity");
-//
-//        newExtraInfo.setCity("AbCdEf");
-//
-//        personService.updateExtraInfoOfPerson(newExtraInfo.getPerson());
-//
-//        Assert.assertEquals(personService.getPerson(id).getExtraInfo().getCity(), "AbCdEf");
-//        personService.deletePerson(id);
+        Person person2 = new Person();
+        person2.setExtraInfo(new ExtraInfo());
+        person2.getExtraInfo().setCity("ExampleCity");
+        person2.setName("John");
+        person2.setLogin("johnLogin987");
+        personService.savePerson(person2);
+
+        Person person3 = new Person();
+        person3.setExtraInfo(new ExtraInfo());
+        person3.getExtraInfo().setCity("NewCity");
+        person3.setName("John");
+        person3.setLogin("johnLogin987");
+        person3.setId(person2.getId());
+
+        Assert.assertEquals(person2.getExtraInfo().getCity(), "ExampleCity");
+        personService.updateExtraInfoOfPerson(person3);
+
+        Assert.assertEquals(person2.getExtraInfo().getCity(), "NewCity");
+
+        personService.deletePerson(person3.getId());
+
+
     }
 
     @AfterClass

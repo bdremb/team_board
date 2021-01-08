@@ -1,7 +1,6 @@
 package by.example.team_board.service;
 
 import by.example.team_board.dao.PersonDAO;
-import by.example.team_board.entity.ExtraInfo;
 import by.example.team_board.entity.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +48,7 @@ public class PersonServiceImpl implements PersonService {
         if (Objects.nonNull(person)) {
             return person;
         }
-        logger.info("person with id = {} does not exists", id);
+        logger.info("Person with id = {} does not exists.", id);
         return null;
     }
 
@@ -66,7 +65,7 @@ public class PersonServiceImpl implements PersonService {
                 .filter(p -> p.getLogin().equals(person.getLogin()))
                 .findAny();
         if (persons.isPresent() && (person.getPassword().equals(persons.get().getPassword()))) {
-            logger.info("successful, login matches password");
+            logger.info("Successful, login matches password.");
             return persons.get();
         }
         logger.error("Person error. Password and login are not valid. Method returned null...");
