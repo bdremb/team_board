@@ -65,30 +65,34 @@ public class PersonServiceTest {
 
     @Test
     public void testUpdateExtraInfoOfPerson() {
-                              //TODO refactor this method
+        Person personToUpdate = new Person();
+        personToUpdate.setExtraInfo(new ExtraInfo());
+        personToUpdate.getExtraInfo().setCity("ExampleCity");
+        personToUpdate.getExtraInfo().setEmail("cucu@cucu.ff");
+        personToUpdate.getExtraInfo().setAge(11);
+        personToUpdate.setName("John");
+        personToUpdate.setLogin("johnLogin987");
+        personService.savePerson(personToUpdate);
 
-        Person person2 = new Person();
-        person2.setExtraInfo(new ExtraInfo());
-        person2.getExtraInfo().setCity("ExampleCity");
-        person2.setName("John");
-        person2.setLogin("johnLogin987");
-        personService.savePerson(person2);
+        Person copyOfPersonWithNewExtraInfo = new Person();
+        copyOfPersonWithNewExtraInfo.setExtraInfo(new ExtraInfo());
+        copyOfPersonWithNewExtraInfo.setName(personToUpdate.getName());
+        copyOfPersonWithNewExtraInfo.setLogin(personToUpdate.getLogin());
+        copyOfPersonWithNewExtraInfo.setId(personToUpdate.getId());
+        copyOfPersonWithNewExtraInfo.getExtraInfo().setCity("NewCity");
+        copyOfPersonWithNewExtraInfo.getExtraInfo().setEmail("ExampleEmail@email.email");
+        copyOfPersonWithNewExtraInfo.getExtraInfo().setAge(99);
 
-        Person person3 = new Person();
-        person3.setExtraInfo(new ExtraInfo());
-        person3.getExtraInfo().setCity("NewCity");
-        person3.setName("John");
-        person3.setLogin("johnLogin987");
-        person3.setId(person2.getId());
+        Assert.assertEquals(personToUpdate.getExtraInfo().getCity(), "ExampleCity");
+        Assert.assertEquals(personToUpdate.getExtraInfo().getEmail(), "cucu@cucu.ff");
+        Assert.assertEquals(personToUpdate.getExtraInfo().getAge(), 11);
 
-        Assert.assertEquals(person2.getExtraInfo().getCity(), "ExampleCity");
-        personService.updateExtraInfoOfPerson(person3);
+        personService.updateExtraInfoOfPerson(copyOfPersonWithNewExtraInfo);
+        Assert.assertEquals(personToUpdate.getExtraInfo().getCity(), "NewCity");
+        Assert.assertEquals(personToUpdate.getExtraInfo().getEmail(), "ExampleEmail@email.email");
+        Assert.assertEquals(personToUpdate.getExtraInfo().getAge(), 99);
 
-        Assert.assertEquals(person2.getExtraInfo().getCity(), "NewCity");
-
-        personService.deletePerson(person3.getId());
-
-
+        personService.deletePerson(personToUpdate.getId());
     }
 
     @AfterClass
