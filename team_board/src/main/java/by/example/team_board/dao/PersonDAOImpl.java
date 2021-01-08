@@ -1,6 +1,5 @@
 package by.example.team_board.dao;
 
-import by.example.team_board.entity.ExtraInfo;
 import by.example.team_board.entity.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,7 +31,7 @@ public class PersonDAOImpl implements PersonDAO {
     @Override
     public void savePerson(Person person) {
         sessionFactory.getCurrentSession().saveOrUpdate(person);
-        logger.info("person was saved successfully");
+        logger.info("Successful, person was saved.");
     }
 
     @Override
@@ -45,6 +44,6 @@ public class PersonDAOImpl implements PersonDAO {
     public void deletePerson(int id) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(session.get(Person.class, id));
-        logger.info("person was deleted successfully");
+        logger.info("Successful, person was deleted.");
     }
 }

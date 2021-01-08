@@ -65,10 +65,10 @@ public class PersonServiceImpl implements PersonService {
                 .filter(p -> p.getLogin().equals(person.getLogin()))
                 .findAny();
         if (persons.isPresent() && (person.getPassword().equals(persons.get().getPassword()))) {
-            logger.info("Successful, login matches password.");
+            logger.info("Successful, person was validated.");
             return persons.get();
         }
-        logger.error("Person error. Password and login are not valid. Method returned null...");
+        logger.error("Error. Person was not validated.");
         return null;
     }
 
@@ -77,6 +77,7 @@ public class PersonServiceImpl implements PersonService {
     public Person updateExtraInfoOfPerson(Person person) {
         Person updatedPerson = personDAO.getPerson(person.getId());
         updatedPerson.setExtraInfo(person.getExtraInfo());
+        logger.info("Successful, person was updated.");
         return updatedPerson;
     }
 }

@@ -49,7 +49,7 @@ public class PersonController {
     public String saveNewPerson(@ModelAttribute("person") @Valid Person person,
                                 BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            logger.error("binding result has errors");
+            logger.error("Binding result has errors.");
             return "register";
         }
         if (person.getPassword().equals(person.getConfirmPassword())) {
@@ -81,7 +81,7 @@ public class PersonController {
         Person newPerson = personService.validateAndGetPerson(person);
         if (Objects.nonNull(newPerson)) {
             model.addAttribute("person", newPerson);
-            logger.info("enter to the person page");
+            logger.info("Login completed successfully.");
             return "person-page";
         }
         return "redirect:/login";
