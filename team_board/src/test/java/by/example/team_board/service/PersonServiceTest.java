@@ -85,10 +85,11 @@ public class PersonServiceTest {
         Assert.assertEquals(personToUpdate.getExtraInfo().getEmail(), "cucu@cucu.ff");
         Assert.assertEquals(personToUpdate.getExtraInfo().getAge(), 11);
 
-        personService.updateExtraInfoOfPerson(copyOfPersonWithNewExtraInfo);
+        Person personToUpdateNew = personService.updateExtraInfoOfPerson(copyOfPersonWithNewExtraInfo);
         Assert.assertEquals(personToUpdate.getExtraInfo().getCity(), "NewCity");
         Assert.assertEquals(personToUpdate.getExtraInfo().getEmail(), "ExampleEmail@email.email");
         Assert.assertEquals(personToUpdate.getExtraInfo().getAge(), 99);
+        Assert.assertEquals(personToUpdateNew, personToUpdate);
 
         personService.deletePerson(personToUpdate.getId());
     }
