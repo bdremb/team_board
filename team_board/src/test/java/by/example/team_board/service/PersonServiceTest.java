@@ -15,7 +15,8 @@ import java.util.List;
 public class PersonServiceTest {
     private static SessionFactory factory;
     private static PersonService personService;
-    private static Person person;
+    private static Person testPerson1;
+    private static Person testPerson2;
 
     @BeforeClass
     public static void setUp() {
@@ -23,10 +24,12 @@ public class PersonServiceTest {
                 .addAnnotatedClass(Person.class).addAnnotatedClass(ExtraInfo.class).buildSessionFactory();
         factory.getCurrentSession().beginTransaction();
         personService = new PersonServiceImpl(new PersonDAOImplTest(factory));
-        person = new Person();
-        person.setExtraInfo(new ExtraInfo());
-        person.setName("Mikhail");
-        person.setLogin("login123123123");
+
+        testPerson1 = new Person("Michail", "Petrov", "login123123123");
+        testPerson1.setExtraInfo(new ExtraInfo("skypeMich", "Moscow", "+7(920)234-23-23", 32));
+
+        testPerson2 = new Person("John", "Johnson", "johnLogin987");
+        testPerson2.setExtraInfo(new ExtraInfo("johnSkype", "London", "+1(23)555-55-55", 22));
     }
 
     @Test
@@ -48,50 +51,31 @@ public class PersonServiceTest {
     public void testValidateAndGetPerson() {
         Person person2 = personService.getPerson(2);
         Assert.assertEquals(person2, personService.validateAndGetPerson(person2));
-        Assert.assertNull(personService.validateAndGetPerson(person));
+        Assert.assertNull(personService.validateAndGetPerson(testPerson1));
     }
 
     @Test
     public void testSaveAndDeletePerson() {
-        boolean result = personService.savePerson(person);
+        boolean result = personService.savePerson(testPerson1);
         Assert.assertTrue(result);
-        boolean result2 = personService.savePerson(person);
+        boolean result2 = personService.savePerson(testPerson1);
         Assert.assertFalse(result2);
-        personService.deletePerson(person.getId());
-        Assert.assertNull(personService.getPerson(person.getId()));
+        personService.deletePerson(testPerson1.getId());
+        Assert.assertNull(personService.getPerson(testPerson1.getId()));
     }
 
     @Test
     public void testUpdateExtraInfoOfPerson() {
-        Person personToUpdate = new Person();
-        personToUpdate.setExtraInfo(new ExtraInfo());
-        personToUpdate.getExtraInfo().setCity("ExampleCity");
-        personToUpdate.getExtraInfo().setEmail("cucu@cucu.ff");
-        personToUpdate.getExtraInfo().setAge(11);
-        personToUpdate.setName("John");
-        personToUpdate.setLogin("johnLogin987");
-        personService.savePerson(personToUpdate);
+        personService.savePerson(testPerson2);
+        Person copyOfPersonWithNewExtraInfo =
+                new Person(testPerson2.getName(), testPerson2.getSurname(), testPerson2.getLogin());
+        copyOfPersonWithNewExtraInfo.setId(testPerson2.getId());
+        copyOfPersonWithNewExtraInfo.setExtraInfo(
+                new ExtraInfo("newJohn", "NewLondon", "+7-111-222-33-44", 99));
 
-        Person copyOfPersonWithNewExtraInfo = new Person();
-        copyOfPersonWithNewExtraInfo.setExtraInfo(new ExtraInfo());
-        copyOfPersonWithNewExtraInfo.setName(personToUpdate.getName());
-        copyOfPersonWithNewExtraInfo.setLogin(personToUpdate.getLogin());
-        copyOfPersonWithNewExtraInfo.setId(personToUpdate.getId());
-        copyOfPersonWithNewExtraInfo.getExtraInfo().setCity("NewCity");
-        copyOfPersonWithNewExtraInfo.getExtraInfo().setEmail("ExampleEmail@email.email");
-        copyOfPersonWithNewExtraInfo.getExtraInfo().setAge(99);
-
-        Assert.assertEquals(personToUpdate.getExtraInfo().getCity(), "ExampleCity");
-        Assert.assertEquals(personToUpdate.getExtraInfo().getEmail(), "cucu@cucu.ff");
-        Assert.assertEquals(personToUpdate.getExtraInfo().getAge(), 11);
-
-        Person personToUpdateNew = personService.updateExtraInfoOfPerson(copyOfPersonWithNewExtraInfo);
-        Assert.assertEquals(personToUpdate.getExtraInfo().getCity(), "NewCity");
-        Assert.assertEquals(personToUpdate.getExtraInfo().getEmail(), "ExampleEmail@email.email");
-        Assert.assertEquals(personToUpdate.getExtraInfo().getAge(), 99);
-        Assert.assertEquals(personToUpdateNew, personToUpdate);
-
-        personService.deletePerson(personToUpdate.getId());
+        Assert.assertNotEquals(copyOfPersonWithNewExtraInfo, testPerson2);
+        Assert.assertEquals(personService.updateExtraInfoOfPerson(copyOfPersonWithNewExtraInfo), testPerson2);
+        personService.deletePerson(testPerson2.getId());
     }
 
     @AfterClass

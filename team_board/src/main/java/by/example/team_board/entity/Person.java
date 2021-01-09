@@ -47,6 +47,20 @@ public class Person {
     @JoinColumn(name = "extra_info_id")
     private ExtraInfo extraInfo;
 
+    public Person() {
+    }
+
+    public Person(String name, String surname, String login) {
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+    }
+
+    public Person(String name, String surname, String login, String gender) {
+        this(name, surname, login);
+        this.gender = gender;
+    }
+
     public int getId() {
         return id;
     }

@@ -38,6 +38,20 @@ public class ExtraInfo {
     @OneToOne(mappedBy = "extraInfo")
     private Person person;
 
+    public ExtraInfo() {
+    }
+
+    public ExtraInfo(String skype, String city, int age) {
+        this.skype = skype;
+        this.city = city;
+        this.age = age;
+    }
+
+    public ExtraInfo(String skype, String city, String phoneNumber, int age) {
+        this(skype, city, age);
+        this.phoneNumber = phoneNumber;
+    }
+
     public int getId() {
         return id;
     }
