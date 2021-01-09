@@ -7,7 +7,7 @@
 </head>
 
 <body style="background-color: antiquewhite">
-<h1 style="color: blue" align="center">MyTeam</h1>
+<h1 style="color: blue" align="center">Team BOARD</h1>
 <br>
 Пожалуйста, заполните все поля, которые сможете.<br>
 <br>

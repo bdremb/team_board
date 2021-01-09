@@ -67,14 +67,14 @@ public class PersonServiceTest {
     @Test
     public void testUpdateExtraInfoOfPerson() {
         personService.savePerson(testPerson2);
-        Person copyOfPersonWithNewExtraInfo =
+        Person personWithNewExtraInfo =
                 new Person(testPerson2.getName(), testPerson2.getSurname(), testPerson2.getLogin());
-        copyOfPersonWithNewExtraInfo.setId(testPerson2.getId());
-        copyOfPersonWithNewExtraInfo.setExtraInfo(
+        personWithNewExtraInfo.setId(testPerson2.getId());
+        personWithNewExtraInfo.setExtraInfo(
                 new ExtraInfo("newJohn", "NewLondon", "+7-111-222-33-44", 99));
 
-        Assert.assertNotEquals(copyOfPersonWithNewExtraInfo, testPerson2);
-        Assert.assertEquals(personService.updateExtraInfoOfPerson(copyOfPersonWithNewExtraInfo), testPerson2);
+        Assert.assertNotEquals(personWithNewExtraInfo, testPerson2);
+        Assert.assertEquals(personService.updateExtraInfoOfPerson(personWithNewExtraInfo), testPerson2);
         personService.deletePerson(testPerson2.getId());
     }
 

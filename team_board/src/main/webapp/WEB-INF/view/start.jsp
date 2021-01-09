@@ -6,7 +6,7 @@
 </head>
 
 <body style="background-color: #e5d0b4">
-<h1 style="color: blue" align="center">MyTeam</h1>
+<h1 style="color: blue" align="center">Team BOARD</h1>
 
 <div class="body_container">
     <table>

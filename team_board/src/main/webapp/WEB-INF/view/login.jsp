@@ -7,7 +7,7 @@
 </head>
 
 <body style="background-color: antiquewhite">
-<h1 style="color: blue" align="center">MyTeam</h1>
+<h1 style="color: blue" align="center">Team BOARD</h1>
 <h3>Enter your login and password:</h3>
 
 <form:form action="/team/login" modelAttribute="person" method="post">

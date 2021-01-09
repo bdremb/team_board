@@ -58,7 +58,7 @@ public class PersonController {
                 return "login";
             }
         }
-        model.addAttribute("info", "Change your username or check if your password is correct");
+        model.addAttribute("info", "Change your username or check your password");
         model.addAttribute("page", "/register");
         return "error-page";
     }

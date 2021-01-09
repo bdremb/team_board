@@ -5,7 +5,7 @@
     <title>About</title>
 </head>
 <body style="background-color: antiquewhite">
-<h1 style="color: blue" align="center">MyTeam</h1>
+<h1 style="color: blue" align="center">Team BOARD</h1>
 <div style="padding: 50px;">
     Здесь информация о проекте &mdash; но пока пусто :)
     <br>
