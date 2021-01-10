@@ -35,6 +35,12 @@ public class MyConfig {
     private String user;
     @Value("${jdbc.password}")
     private String password;
+    @Value("${hibernate.dialect}")
+    private String hibernateDialect;
+    @Value("${hibernate.hbm2ddl.auto}")
+    private String hibernateHbm2ddlAuto;
+    @Value("${hibernate.show_sql}")
+    private String hibernateShowSql;
 
     @Bean
     public ViewResolver viewResolver() {
@@ -64,10 +70,9 @@ public class MyConfig {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("by.example.team_board.entity");
         Properties hibernateProperties = new Properties();
-        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        hibernateProperties.setProperty("hibernate.show_sql", "true");
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
-        hibernateProperties.setProperty("hibernate.show_sql", "true");
+        hibernateProperties.setProperty("hibernate.dialect", hibernateDialect);
+        hibernateProperties.setProperty("hibernate.show_sql", hibernateShowSql);
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
         sessionFactory.setHibernateProperties(hibernateProperties);
         return sessionFactory;
     }
