@@ -11,4 +11,19 @@
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="openjdk-15" project-jdk-type="JavaSDK" />
+  <component name="StickyNotes">
+    <option name="stickyNotes">
+      <list>
+        <SerializedStickyNote>
+          <option name="boundBranchName" value="dev" />
+          <option name="description" value="validating my code" />
+        </SerializedStickyNote>
+        <SerializedStickyNote>
+          <option name="archived" value="true" />
+          <option name="boundBranchName" value="dev" />
+          <option name="description" value="to do" />
+        </SerializedStickyNote>
+      </list>
+    </option>
+  </component>
 </project>

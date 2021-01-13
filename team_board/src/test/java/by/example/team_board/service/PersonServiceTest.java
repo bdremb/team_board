@@ -33,7 +33,7 @@ public class PersonServiceTest {
     }
 
     @Test
-    public void testGetAllPersons() {
+    public void getAllPersonsTest() {
         List<Person> personList = personService.getAllPersons();
         Assert.assertEquals(personList.get(0).getName(), "Sergey");
         Assert.assertEquals(personList.get(1).getExtraInfo().getAge(), 12);
@@ -41,21 +41,21 @@ public class PersonServiceTest {
     }
 
     @Test
-    public void testGetPerson() {
+    public void getPersonTest() {
         Person testPerson = personService.getPerson(3);
         Assert.assertEquals(testPerson.getSurname(), "Sidorova");
         Assert.assertEquals(testPerson.getExtraInfo().getPhoneNumber(), "998877664");
     }
 
     @Test
-    public void testValidateAndGetPerson() {
+    public void validateAndGetPersonTest() {
         Person person2 = personService.getPerson(2);
         Assert.assertEquals(person2, personService.validateAndGetPerson(person2));
         Assert.assertNull(personService.validateAndGetPerson(testPerson1));
     }
 
     @Test
-    public void testSaveAndDeletePerson() {
+    public void saveAndDeletePersonTest() {
         boolean result = personService.savePerson(testPerson1);
         Assert.assertTrue(result);
         boolean result2 = personService.savePerson(testPerson1);
@@ -65,7 +65,7 @@ public class PersonServiceTest {
     }
 
     @Test
-    public void testUpdateExtraInfoOfPerson() {
+    public void updateExtraInfoOfPersonTest() {
         personService.savePerson(testPerson2);
         Person personWithNewExtraInfo =
                 new Person(testPerson2.getName(), testPerson2.getSurname(), testPerson2.getLogin());
