@@ -75,11 +75,12 @@ public class PersonServiceTest {
 
         Assert.assertNotEquals(personWithNewExtraInfo, testPerson2);
         Assert.assertEquals(personService.updateExtraInfoOfPerson(personWithNewExtraInfo), testPerson2);
-        personService.deletePerson(testPerson2.getId());
+
     }
 
     @AfterClass
-    public static void cleanUp() {
+    public static void cleanup() {
+        personService.deletePerson(testPerson2.getId());
         factory.getCurrentSession().getTransaction().commit();
         factory.close();
     }
