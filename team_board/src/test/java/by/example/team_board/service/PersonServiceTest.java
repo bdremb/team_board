@@ -79,7 +79,7 @@ public class PersonServiceTest {
     }
 
     @AfterClass
-    public static void finished() {
+    public static void cleanUp() {
         factory.getCurrentSession().getTransaction().commit();
         factory.close();
     }

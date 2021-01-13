@@ -25,8 +25,8 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan(basePackages = "by.example.team_board")
 @EnableWebMvc
-public class MyConfig {
-    final static Logger logger = LoggerFactory.getLogger(MyConfig.class);
+public class Config {
+    final static Logger logger = LoggerFactory.getLogger(Config.class);
     @Value("${jdbc.driver}")
     private String jdbcDriver;
     @Value("${jdbc.url}")
