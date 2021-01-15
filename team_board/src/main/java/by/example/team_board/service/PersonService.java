@@ -14,7 +14,7 @@ public interface PersonService {
 
     void deletePerson(int id);
 
-    Person validateAndGetPerson(Person person);
+    Person authorize(Person person);
 
     Person updateExtraInfoOfPerson(Person person);
 }

@@ -48,7 +48,7 @@ public class PersonController {
     @PostMapping("/persons")
     public String saveNewPerson(@ModelAttribute("person") @Valid Person person,
                                 BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {  // добавить в лог
             logger.error("Binding result has errors.");
             return "register";
         }
@@ -73,16 +73,16 @@ public class PersonController {
     public String updatePerson(@PathVariable("id") int id, Model model) {
         Person person = personService.getPerson(id);
         model.addAttribute("person", person);
-        return "person-page";
+        return "person-page";  //enum
     }
 
     @PostMapping("/login")
-    public String enter(@ModelAttribute("person") Person person, Model model) {
-        Person newPerson = personService.validateAndGetPerson(person);
+    public String enter(@ModelAttribute("person") Person person, Model model) { // login
+        Person newPerson = personService.authorize(person);
         if (Objects.nonNull(newPerson)) {
             model.addAttribute("person", newPerson);
             logger.info("Login completed successfully.");
-            return "person-page";
+            return "person-page";  //enum
         }
         return "redirect:/login";
     }
@@ -90,6 +90,6 @@ public class PersonController {
     @PostMapping("/addinfo")
     public String updateExtraInfoOfPerson(@ModelAttribute("person") Person person, Model model) {
         model.addAttribute("person", personService.updateExtraInfoOfPerson(person));
-        return "person-page";
+        return "person-page"; //enum
     }
 }

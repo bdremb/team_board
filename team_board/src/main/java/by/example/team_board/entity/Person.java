@@ -36,30 +36,16 @@ public class Person {
     @Column(name = "gender")
     private String gender;
 
-    @Size(min = 2, max = 50, message = "password length from 2 to 50 characters")
+    @Size(min = 2, max = 50, message = "password length must be from 2 to 50 characters")
     @Column(name = "password")
     private String password;
 
     @Transient
     private String confirmPassword;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)  //static import
     @JoinColumn(name = "extra_info_id")
     private ExtraInfo extraInfo;
-
-    public Person() {
-    }
-
-    public Person(String name, String surname, String login) {
-        this.name = name;
-        this.surname = surname;
-        this.login = login;
-    }
-
-    public Person(String name, String surname, String login, String gender) {
-        this(name, surname, login);
-        this.gender = gender;
-    }
 
     public int getId() {
         return id;

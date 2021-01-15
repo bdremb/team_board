@@ -11,7 +11,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 
 @Entity
-@Table(name = "extra_info")
+@Table(name = "extra_info")  //lombok
 public class ExtraInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,38 +19,24 @@ public class ExtraInfo {
     private int id;
 
     @Column(name = "skype")
-    private String skype = "null";
+    private String skype;
 
     @Column(name = "city")
-    private String city = "null";
+    private String city;
 
     @Column(name = "phone_number")
-    private String phoneNumber = "null";
+    private String phoneNumber;
 
     @Max(value = 150)
     @Column(name = "age")
-    private int age = 1;
+    private int age;
 
     @Email(message = "email is not valid")
     @Column(name = "email")
-    private String email = "example@example.com";
+    private String email;
 
     @OneToOne(mappedBy = "extraInfo")
     private Person person;
-
-    public ExtraInfo() {
-    }
-
-    public ExtraInfo(String skype, String city, int age) {
-        this.skype = skype;
-        this.city = city;
-        this.age = age;
-    }
-
-    public ExtraInfo(String skype, String city, String phoneNumber, int age) {
-        this(skype, city, age);
-        this.phoneNumber = phoneNumber;
-    }
 
     public int getId() {
         return id;

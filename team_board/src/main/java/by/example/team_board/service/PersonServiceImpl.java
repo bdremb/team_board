@@ -5,7 +5,6 @@ import by.example.team_board.entity.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +18,7 @@ public class PersonServiceImpl implements PersonService {
     private final PersonDAO personDAO;
 
     @Autowired
-    public PersonServiceImpl(@Qualifier("personDAOImpl") PersonDAO personDAO) {
+    public PersonServiceImpl(PersonDAO personDAO) {
         this.personDAO = personDAO;
     }
 
@@ -35,21 +34,16 @@ public class PersonServiceImpl implements PersonService {
         if (personDAO.getAllPersons()
                 .stream()
                 .anyMatch(p -> p.getLogin().equals(person.getLogin()))) {
-            return false;
+            return false; //throw new exception to frontend, create exceptions package
         }
         personDAO.savePerson(person);
-        return true;
+        return true; // return Person
     }
 
     @Override
     @Transactional
     public Person getPerson(int id) {
-        Person person = personDAO.getPerson(id);
-        if (Objects.nonNull(person)) {
-            return person;
-        }
-        logger.info("Person with id = {} does not exists.", id);
-        return null;
+        return personDAO.getPerson(id);
     }
 
     @Override
@@ -60,21 +54,20 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public Person validateAndGetPerson(Person person) {
+    public Person authorize(Person person) {
         Optional<Person> persons = personDAO.getAllPersons().stream()
                 .filter(p -> p.getLogin().equals(person.getLogin()))
                 .findAny();
         if (persons.isPresent() && (person.getPassword().equals(persons.get().getPassword()))) {
-            logger.info("Successful, person was validated.");
             return persons.get();
         }
         logger.error("Error. Person was not validated.");
-        return null;
+        return null;  // throw new exception validation
     }
 
     @Override
     @Transactional
-    public Person updateExtraInfoOfPerson(Person person) {
+    public Person updateExtraInfoOfPerson(Person person) {   //
         Person updatedPerson = personDAO.getPerson(person.getId());
         updatedPerson.setExtraInfo(person.getExtraInfo());
         logger.info("Successful, person was updated.");

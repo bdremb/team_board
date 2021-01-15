@@ -1,65 +1,41 @@
 package by.example.team_board.service;
 
-import by.example.team_board.dao.PersonDAO;
 import by.example.team_board.dao.PersonDAOImpl;
-import by.example.team_board.entity.ExtraInfo;
 import by.example.team_board.entity.Person;
-import org.h2.engine.User;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.annotations.Source;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 
 public class PersonServiceTest {
 
+    private static PersonDAOImpl personDAO;
     private static PersonService personService;
     private static Person testPerson1;
     private static Person testPerson2;
     private EmbeddedDatabase db;
 
-    private PersonDAO personDAO;
 
 
     @Before
-    public void setUp() throws SQLException {
+    public void setUp() {
         db = new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
                 .addScript("db/sql/create-db.sql")
-                //.addScript("db/sql/insert-data.sql")
+                .addScript("db/sql/insert-data.sql")
                 .build();
-        SessionFactory sessionFactory;
-
-
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("test.hibernate.cfg.xml").build();
-
-        try {
-            Metadata metadata = new MetadataSources(registry).getMetadataBuilder().build();
-            sessionFactory = metadata.getSessionFactoryBuilder().build();
-            personDAO = new PersonDAOImpl(sessionFactory);
-            personService = new PersonServiceImpl(personDAO);
-        } catch (Exception e) {
-            StandardServiceRegistryBuilder.destroy(registry);
-        }
-
-
 
 
 //        testPerson1 = new Person("Michail", "Petrov", "login123123123");
@@ -74,22 +50,21 @@ public class PersonServiceTest {
     }
 
 
-
-
     @Test
     public void getAllPersonsTest() {
+
         List<Person> personList = personService.getAllPersons();
         Assert.assertEquals(personList.get(0).getName(), "Sergey");
         Assert.assertEquals(personList.get(1).getExtraInfo().getAge(), 12);
         Assert.assertEquals(personList.get(2).getExtraInfo().getEmail(), "dd@dd.com");
     }
-//
-//    @Test
-//    public void getPersonTest() {
-//        Person testPerson = personService.getPerson(3);
-//        Assert.assertEquals(testPerson.getSurname(), "Sidorova");
-//        Assert.assertEquals(testPerson.getExtraInfo().getPhoneNumber(), "998877664");
-//    }
+
+    @Test
+    public void getPersonTest() {
+        Person testPerson = personService.getPerson(3);
+        Assert.assertEquals(testPerson.getSurname(), "Sidorova");
+        Assert.assertEquals(testPerson.getExtraInfo().getPhoneNumber(), "998877664");
+    }
 //
 //    @Test
 //    public void validateAndGetPersonTest() {
@@ -125,6 +100,7 @@ public class PersonServiceTest {
     @After
     public void cleanup() {
         db.shutdown();
+
 
     }
 

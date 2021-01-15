@@ -21,7 +21,7 @@
         <property name="serverTimezone" value="UTC" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="people@localhost [2]" uuid="cb3f68fd-05ab-4a39-9fe3-752689664202">
+    <data-source source="LOCAL" name="people@localhost [2]" uuid="6e7ba846-2b82-4fce-a79d-64e658bd700a">
       <driver-ref>h2.unified</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.h2.Driver</jdbc-driver>
