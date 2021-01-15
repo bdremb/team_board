@@ -19,7 +19,7 @@ import javax.validation.constraints.Max;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "extra_info")  //lombok
+@Table(name = "extra_info")
 public class ExtraInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

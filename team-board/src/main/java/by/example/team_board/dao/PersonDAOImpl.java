@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
+
+import static java.util.Optional.ofNullable;
 
 @Repository
 public class PersonDAOImpl implements PersonDAO {
     final static Logger logger = LoggerFactory.getLogger(PersonDAOImpl.class);
     private final SessionFactory sessionFactory;
+    private final String GET_ALL_PERSONS = "from Person";
 
     @Autowired
     public PersonDAOImpl(SessionFactory sessionFactory) {
@@ -24,19 +26,19 @@ public class PersonDAOImpl implements PersonDAO {
     @Override
     public List<Person> getAllPersons() {
         return sessionFactory.getCurrentSession()
-                .createQuery("from Person ", Person.class)  //constant query
+                .createQuery(GET_ALL_PERSONS, Person.class)
                 .getResultList();
     }
 
     @Override
     public void savePerson(Person person) {
         sessionFactory.getCurrentSession().saveOrUpdate(person);
-        logger.info("Person was saved."); //person with id = {} was saved
+        logger.info("Person with id = {} was saved.", person.getId());
     }
 
     @Override
     public Person getPerson(int id) {
-        return Optional.ofNullable(sessionFactory.getCurrentSession()
+        return ofNullable(sessionFactory.getCurrentSession()
                 .get(Person.class, id)).orElse(null);
     }
 
@@ -44,6 +46,6 @@ public class PersonDAOImpl implements PersonDAO {
     public void deletePerson(int id) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(session.get(Person.class, id));
-        logger.info("Successful, person was deleted."); // person with id = {} was deleted
+        logger.info("Person with id = {} was deleted", id);
     }
 }

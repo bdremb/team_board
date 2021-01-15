@@ -8,30 +8,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
-    @GetMapping("/") // goToStartPage
-    public String startPage() {
+    @GetMapping("/")
+    public String goToStartPage() {
         return "start";
     }
 
     @GetMapping("/about")
-    public String about() {    // глагол должен быть goToDetails
+    public String goToDetails() {    // TODO: add javadoc
         return "about";
     }
 
     @GetMapping("/login")
-    public String login(Model model) { //goToLoginPage
+    public String goToLoginPage(Model model) {        // TODO: add javadoc
         model.addAttribute("person", new Person());
         return "login";
     }
 
     @GetMapping("/register")
-    public String registerNewPerson(Model model) {  //goToRegisterPage
+    public String goToRegisterPage(Model model) {
         model.addAttribute("person", new Person());
         return "register";
     }
 
     @GetMapping("/details")
-    public String showDetails() {  // goToPersonDetails
+    public String goToPersonDetailsPage() {
         return "person-details";
     }
 }
