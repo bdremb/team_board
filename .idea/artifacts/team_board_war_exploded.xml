@@ -11,7 +11,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="team_board" />
+          <element id="module-output" name="team-board" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: junit:junit:4.12" />
@@ -71,9 +71,9 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/team_board/target/myteam_spring/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/team-board/target/myteam_spring/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="team_board/web/Web" />
+      <element id="javaee-facet-resources" facet="team-board/web/Web" />
     </root>
   </artifact>
 </component>
