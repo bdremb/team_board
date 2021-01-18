@@ -2,12 +2,14 @@ package by.example.team_board.service;
 
 import by.example.team_board.dao.PersonDAO;
 import by.example.team_board.entity.Person;
+import by.example.team_board.exceptions.AuthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.bind.ValidationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,11 +59,14 @@ public class PersonServiceImpl implements PersonService {
         Optional<Person> persons = personDAO.getAllPersons().stream()
                 .filter(p -> p.getLogin().equals(person.getLogin()))
                 .findAny();
-        if (persons.isPresent() && (person.getPassword().equals(persons.get().getPassword()))) {
-            return persons.get();
+        try {
+            if (!persons.isPresent() || !(person.getPassword().equals(persons.get().getPassword()))) {
+                throw new AuthorizedException("Authentication error.");
+            }
+        } catch (AuthorizedException e) {
+            logger.error(e.getMessage());
         }
-        logger.error("Error. Person was not validated.");
-        return null;  // throw new exception validation
+        return persons.get();
     }
 
     @Override
