@@ -5,9 +5,11 @@ import by.example.team_board.entity.Person;
 import by.example.team_board.exceptions.PersonAlreadyExistException;
 import by.example.team_board.page.Pages;
 import by.example.team_board.service.PersonService;
+
 import java.util.List;
 import java.util.Objects;
 import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
-*{@summary This class is controller
-*@since 1.0.}
-*/
+ * {@summary This class is controller
+ *
+ * @since 1.0.}
+ */
 @Controller
 @RequestMapping("/team")
 public class PersonController {
@@ -37,22 +40,22 @@ public class PersonController {
   }
 
   /**
-   * @summary
    * @param model attribute.
    * @return list-person page.
+   * @summary
    */
   @GetMapping("/persons")
-    public String showAllPersons(Model model) {
+  public String showAllPersons(Model model) {
     List<Person> persons = personService.getAllPersons();
     model.addAttribute("allPersons", persons);
     return Pages.LIST_PERSONS.getPage();
   }
 
   /**
-   * @summary show
-   * @param id person id.
+   * @param id    person id.
    * @param model model.
    * @return person-details page.
+   * @summary show
    */
   @GetMapping("/persons/{id}")
   public String showPersonDetailsById(@PathVariable("id") int id, Model model) {
@@ -69,7 +72,7 @@ public class PersonController {
    */
   @PostMapping("/persons")
   public String saveNewPerson(@ModelAttribute("person") @Valid Person person,
-                                BindingResult bindingResult, Model model) {
+                              BindingResult bindingResult, Model model) {
     if (bindingResult.hasErrors()) {
       logger.error("Binding result has errors: " + bindingResult.toString());
       return Pages.REGISTER.getPage();
@@ -90,7 +93,6 @@ public class PersonController {
   }
 
   /**
-   *
    * @param id
    * @param model
    * @return
@@ -102,7 +104,6 @@ public class PersonController {
   }
 
   /**
-   *
    * @param id
    * @param model
    * @return
@@ -115,7 +116,6 @@ public class PersonController {
   }
 
   /**
-   *
    * @param person
    * @param model
    * @return
@@ -132,7 +132,6 @@ public class PersonController {
   }
 
   /**
-   *
    * @param person
    * @param model
    * @return

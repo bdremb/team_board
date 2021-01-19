@@ -24,34 +24,34 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "person")
 public class Person {
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id")
-    private int id;
+  @Id
+  @GeneratedValue(strategy = IDENTITY)
+  @Column(name = "id")
+  private int id;
 
-    @Column(name = "name")
-    @NotBlank(message = "enter your name")
-    private String name;
+  @Column(name = "name")
+  @NotBlank(message = "enter your name")
+  private String name;
 
-    @Column(name = "surname")
-    @NotBlank(message = "enter your surname")
-    private String surname;
+  @Column(name = "surname")
+  @NotBlank(message = "enter your surname")
+  private String surname;
 
-    @NotBlank(message = "enter login")
-    @Column(name = "login")
-    private String login;
+  @NotBlank(message = "enter login")
+  @Column(name = "login")
+  private String login;
 
-    @Column(name = "gender")
-    private String gender;
+  @Column(name = "gender")
+  private String gender;
 
-    @Size(min = 2, max = 50, message = "password length must be from 2 to 50 characters")
-    @Column(name = "password")
-    private String password;
+  @Size(min = 2, max = 50, message = "password length must be from 2 to 50 characters")
+  @Column(name = "password")
+  private String password;
 
-    @Transient
-    private String confirmPassword;
+  @Transient
+  private String confirmPassword;
 
-    @OneToOne(cascade = ALL, orphanRemoval = true)
-    @JoinColumn(name = "extra_info_id")
-    private ExtraInfo extraInfo;
+  @OneToOne(cascade = ALL, orphanRemoval = true)
+  @JoinColumn(name = "extra_info_id")
+  private ExtraInfo extraInfo;
 }

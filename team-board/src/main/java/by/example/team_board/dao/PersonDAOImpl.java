@@ -14,38 +14,38 @@ import static java.util.Optional.ofNullable;
 
 @Repository
 public class PersonDAOImpl implements PersonDAO {
-    final static Logger logger = LoggerFactory.getLogger(PersonDAOImpl.class);
-    private final SessionFactory sessionFactory;
-    private final String GET_ALL_PERSONS = "from Person";
+  final static Logger logger = LoggerFactory.getLogger(PersonDAOImpl.class);
+  private final SessionFactory sessionFactory;
+  private final String GET_ALL_PERSONS = "from Person";
 
-    @Autowired
-    public PersonDAOImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+  @Autowired
+  public PersonDAOImpl(SessionFactory sessionFactory) {
+    this.sessionFactory = sessionFactory;
+  }
 
-    @Override
-    public List<Person> getAllPersons() {
-        return sessionFactory.getCurrentSession()
-                .createQuery(GET_ALL_PERSONS, Person.class)
-                .getResultList();
-    }
+  @Override
+  public List<Person> getAllPersons() {
+    return sessionFactory.getCurrentSession()
+        .createQuery(GET_ALL_PERSONS, Person.class)
+        .getResultList();
+  }
 
-    @Override
-    public void savePerson(Person person) {
-        sessionFactory.getCurrentSession().saveOrUpdate(person);
-        logger.info("Person with id = <{}> was saved.", person.getId());
-    }
+  @Override
+  public void savePerson(Person person) {
+    sessionFactory.getCurrentSession().saveOrUpdate(person);
+    logger.info("Person with id = <{}> was saved.", person.getId());
+  }
 
-    @Override
-    public Person getPerson(int id) {
-        return ofNullable(sessionFactory.getCurrentSession()
-                .get(Person.class, id)).orElse(null);
-    }
+  @Override
+  public Person getPerson(int id) {
+    return ofNullable(sessionFactory.getCurrentSession()
+        .get(Person.class, id)).orElse(null);
+  }
 
-    @Override
-    public void deletePerson(int id) {
-        Session session = sessionFactory.getCurrentSession();
-        session.delete(session.get(Person.class, id));
-        logger.info("Person with id = <{}> was deleted", id);
-    }
+  @Override
+  public void deletePerson(int id) {
+    Session session = sessionFactory.getCurrentSession();
+    session.delete(session.get(Person.class, id));
+    logger.info("Person with id = <{}> was deleted", id);
+  }
 }

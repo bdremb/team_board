@@ -8,15 +8,15 @@ import java.util.List;
 
 public interface PersonService {
 
-    List<Person> getAllPersons();
+  List<Person> getAllPersons();
 
-    Pages savePerson(Person person) throws PersonAlreadyExistException;
+  Pages savePerson(Person person) throws PersonAlreadyExistException;
 
-    Person getPerson(int id);
+  Person getPerson(int id);
 
-    void deletePerson(int id);
+  void deletePerson(int id);
 
-    Person authorize(Person person);
+  Person authorize(Person person);
 
-    Person updateExtraInfoOfPerson(Person person);
+  Person updateExtraInfoOfPerson(Person person);
 }
