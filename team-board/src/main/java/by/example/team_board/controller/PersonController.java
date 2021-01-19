@@ -36,14 +36,14 @@ public class PersonController {
     public String showAllPersons(Model model) {
         List<Person> persons = personService.getAllPersons();
         model.addAttribute("allPersons", persons);
-        return Pages.list_persons.toString();
+        return Pages.LIST_PERSONS.getPage();
     }
 
     @GetMapping("/persons/{id}")
     public String showPersonDetailsById(@PathVariable("id") int id, Model model) {
         Person person = personService.getPerson(id);
         model.addAttribute("person", person);
-        return Pages.person_details.toString();
+        return Pages.PERSON_DETAILS.getPage();
     }
 
     @PostMapping("/persons")
@@ -51,17 +51,17 @@ public class PersonController {
                                 BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             logger.error("Binding result has errors: " + bindingResult.toString());
-            return Pages.register.toString();
+            return Pages.REGISTER.getPage();
         }
         if (person.getPassword().equals(person.getConfirmPassword())) {
             person.setExtraInfo(new ExtraInfo());
             if (personService.savePerson(person)) {
-                return Pages.login.toString();
+                return Pages.LOGIN.getPage();
             }
         }
         model.addAttribute("info", "Change your username or check your password");
         model.addAttribute("page", "/register");
-        return Pages.error_page.toString();
+        return Pages.ERROR_PAGE.getPage();
     }
 
     @GetMapping("/persons/delete/{id}")
@@ -74,7 +74,7 @@ public class PersonController {
     public String updatePerson(@PathVariable("id") int id, Model model) {
         Person person = personService.getPerson(id);
         model.addAttribute("person", person);
-        return Pages.error_page.toString();
+        return Pages.ERROR_PAGE.getPage();
     }
 
     @PostMapping("/login")
@@ -83,7 +83,7 @@ public class PersonController {
         if (Objects.nonNull(newPerson)) {
             model.addAttribute("person", newPerson);
             logger.info("Login completed successfully.");
-            return Pages.person_page.toString();                   //TODO enum
+            return Pages.PERSON_PAGE.getPage();
         }
         return "redirect:/login";
     }
@@ -91,6 +91,6 @@ public class PersonController {
     @PostMapping("/addinfo")
     public String updateExtraInfoOfPerson(@ModelAttribute("person") Person person, Model model) {
         model.addAttribute("person", personService.updateExtraInfoOfPerson(person));
-        return Pages.person_page.toString();
+        return Pages.PERSON_PAGE.getPage();
     }
 }

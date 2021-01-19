@@ -1,17 +1,23 @@
 package by.example.team_board.page;
 
 public enum Pages {
-    person_page,
-    error_page,
-    person_details,
-    list_persons,
-    register,
-    login;
+    PERSON_PAGE("person-page"),
+    ERROR_PAGE("error-page"),
+    PERSON_DETAILS("person-details"),
+    LIST_PERSONS("list_-persons"),
+    REGISTER("register"),
+    LOGIN("login"),
+    START("start"),
+    ABOUT("about"),
+    HOME("home");
 
+    private final String page;
 
-
-    Pages() {
-
+    Pages(String page) {
+        this.page = page;
     }
 
+    public String getPage() {
+        return page;
+    }
 }

@@ -26,7 +26,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="spring_course_mvc_hibernate_aop" />
-          <factory-entry name="team-board" />
+          <factory-entry name="team-board" value="1ce66e01-6558-4b2b-9f10-2b0f293c3bf2" />
           <factory-entry name="team_board" value="1ce66e01-6558-4b2b-9f10-2b0f293c3bf2" />
         </datasource-mapping>
         <naming-strategy-map />

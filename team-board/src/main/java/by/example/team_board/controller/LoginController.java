@@ -1,6 +1,7 @@
 package by.example.team_board.controller;
 
 import by.example.team_board.entity.Person;
+import by.example.team_board.page.Pages;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,28 +11,28 @@ public class LoginController {
 
     @GetMapping("/")
     public String goToStartPage() {
-        return "start";
+        return Pages.START.getPage();
     }
 
     @GetMapping("/about")
     public String goToDetails() {    // TODO: add javadoc
-        return "about";
+        return Pages.ABOUT.getPage();
     }
 
     @GetMapping("/login")
     public String goToLoginPage(Model model) {        // TODO: add javadoc
         model.addAttribute("person", new Person());
-        return "login";
+        return Pages.LOGIN.getPage();
     }
 
     @GetMapping("/register")
     public String goToRegisterPage(Model model) {
         model.addAttribute("person", new Person());
-        return "register";
+        return Pages.REGISTER.getPage();
     }
 
     @GetMapping("/details")
     public String goToPersonDetailsPage() {
-        return "person-details";
+        return Pages.PERSON_DETAILS.getPage();
     }
 }
