@@ -2,6 +2,7 @@ package by.example.team_board.controller;
 
 import by.example.team_board.entity.ExtraInfo;
 import by.example.team_board.entity.Person;
+import by.example.team_board.exceptions.PersonAlreadyExistException;
 import by.example.team_board.page.Pages;
 import by.example.team_board.service.PersonService;
 import org.slf4j.Logger;
@@ -55,11 +56,15 @@ public class PersonController {
         }
         if (person.getPassword().equals(person.getConfirmPassword())) {
             person.setExtraInfo(new ExtraInfo());
-            if (personService.savePerson(person)) {
-                return Pages.LOGIN.getPage();
+            try {
+                return personService.savePerson(person).getPage();
+            } catch (PersonAlreadyExistException e) {
+                logger.error("Person with login: <{}> already exist", person.getLogin());
+                model.addAttribute("info", "Change your username");
+                return Pages.ERROR_PAGE.getPage();
             }
         }
-        model.addAttribute("info", "Change your username or check your password");
+        model.addAttribute("info", "Change your password");
         model.addAttribute("page", "/register");
         return Pages.ERROR_PAGE.getPage();
     }

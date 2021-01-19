@@ -33,7 +33,7 @@ public class PersonDAOImpl implements PersonDAO {
     @Override
     public void savePerson(Person person) {
         sessionFactory.getCurrentSession().saveOrUpdate(person);
-        logger.info("Person with id = {} was saved.", person.getId());
+        logger.info("Person with id = <{}> was saved.", person.getId());
     }
 
     @Override
@@ -46,6 +46,6 @@ public class PersonDAOImpl implements PersonDAO {
     public void deletePerson(int id) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(session.get(Person.class, id));
-        logger.info("Person with id = {} was deleted", id);
+        logger.info("Person with id = <{}> was deleted", id);
     }
 }

@@ -4,7 +4,7 @@ public enum Pages {
     PERSON_PAGE("person-page"),
     ERROR_PAGE("error-page"),
     PERSON_DETAILS("person-details"),
-    LIST_PERSONS("list_-persons"),
+    LIST_PERSONS("list-persons"),
     REGISTER("register"),
     LOGIN("login"),
     START("start"),

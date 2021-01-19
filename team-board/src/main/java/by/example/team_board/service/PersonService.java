@@ -1,6 +1,8 @@
 package by.example.team_board.service;
 
 import by.example.team_board.entity.Person;
+import by.example.team_board.exceptions.PersonAlreadyExistException;
+import by.example.team_board.page.Pages;
 
 import java.util.List;
 
@@ -8,7 +10,7 @@ public interface PersonService {
 
     List<Person> getAllPersons();
 
-    boolean savePerson(Person person);
+    Pages savePerson(Person person) throws PersonAlreadyExistException;
 
     Person getPerson(int id);
 

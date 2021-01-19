@@ -21,37 +21,32 @@ import java.util.Arrays;
 import java.util.Properties;
 
 @Configuration
-@PropertySource("classpath:teamBoard.properties")
+@PropertySource("classpath:teamBoardTest.properties")
 @EnableTransactionManagement
-@ComponentScan(basePackages = "by.example.team_board")
-@EnableWebMvc
+//@ComponentScan(basePackages = "by.example.team_board")
+
 public class TestConfig {
     final static Logger logger = LoggerFactory.getLogger(TestConfig.class);
-    @Value("${jdbc.driver}")
-    private String jdbcDriver;
-    @Value("${jdbc.url}")
-    private String jdbcUrl;
-    @Value("${jdbc.user}")
-    private String user;
-    @Value("${jdbc.password}")
-    private String password;
-    @Value("${hibernate.dialect}")
-    private String hibernateDialect;
+    //@Value("${jdbc.driver}")
+    private static String jdbcDriver = "org.h2.Driver";
+   // @Value("${jdbc.url}")
+    private static String jdbcUrl = "jdbc:h2:mem:people;DB_CLOSE_DELAY=-1";
+    //@Value("${jdbc.user}")
+    private static String user = "sa";
+    //@Value("${jdbc.password}")
+    private static String password = "sa";
+    //@Value("${hibernate.dialect}")
+    private static String hibernateDialect = "org.hibernate.dialect.H2Dialect";
     @Value("${hibernate.hbm2ddl.auto}")
-    private String hibernateHbm2ddlAuto;
+    private static String hibernateHbm2ddlAuto;
     @Value("${hibernate.show_sql}")
-    private String hibernateShowSql;
+    private static String hibernateShowSql;
+    @Value("${hibernate.createDatabaseIfNotExist}")
+    private static String createDatabaseIfNotExist;
+
 
     @Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
-        internalResourceViewResolver.setPrefix("/WEB-INF/view/");
-        internalResourceViewResolver.setSuffix(".jsp");
-        return internalResourceViewResolver;
-    }
-
-    @Bean
-    public DataSource dataSource() {
+    public static DataSource dataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
             dataSource.setDriverClass(jdbcDriver);
@@ -65,7 +60,7 @@ public class TestConfig {
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
+    public static LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("by.example.team_board.entity");
@@ -73,6 +68,7 @@ public class TestConfig {
         hibernateProperties.setProperty("hibernate.dialect", hibernateDialect);
         hibernateProperties.setProperty("hibernate.show_sql", hibernateShowSql);
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
+        hibernateProperties.setProperty("hibernate.createDatabaseIfNotExist", createDatabaseIfNotExist);
         sessionFactory.setHibernateProperties(hibernateProperties);
         return sessionFactory;
     }

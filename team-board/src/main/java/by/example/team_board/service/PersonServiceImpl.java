@@ -3,6 +3,8 @@ package by.example.team_board.service;
 import by.example.team_board.dao.PersonDAO;
 import by.example.team_board.entity.Person;
 import by.example.team_board.exceptions.AuthorizedException;
+import by.example.team_board.exceptions.PersonAlreadyExistException;
+import by.example.team_board.page.Pages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +32,14 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public boolean savePerson(Person person) {
+    public Pages savePerson(Person person) throws PersonAlreadyExistException {
         if (personDAO.getAllPersons()
                 .stream()
                 .anyMatch(p -> p.getLogin().equals(person.getLogin()))) {
-            return false; //throw new exception to frontend, create exceptions package
+            throw new PersonAlreadyExistException("Person already exist");
         }
         personDAO.savePerson(person);
-        return true; // return Person
+        return Pages.LOGIN;
     }
 
     @Override
@@ -60,7 +62,7 @@ public class PersonServiceImpl implements PersonService {
                 .findAny();
         try {
             if (!persons.isPresent() || !(person.getPassword().equals(persons.get().getPassword()))) {
-                throw new AuthorizedException("Authentication error.");
+                throw new AuthorizedException("Authentication error");
             }
         } catch (AuthorizedException e) {
             logger.error(e.getMessage());
@@ -73,7 +75,7 @@ public class PersonServiceImpl implements PersonService {
     public Person updateExtraInfoOfPerson(Person person) {
         Person updatedPerson = personDAO.getPerson(person.getId());
         updatedPerson.setExtraInfo(person.getExtraInfo());
-        logger.info("Person with login {} was updated.", person.getLogin());
+        logger.info("Person with login <{}> was updated.", person.getLogin());
         return updatedPerson;
     }
 }
