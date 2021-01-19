@@ -27,6 +27,7 @@ import java.util.Properties;
 @EnableWebMvc
 public class Config {
     final static Logger logger = LoggerFactory.getLogger(Config.class);
+    @SuppressWarnings("checkstyle:Indentation")
     @Value("${jdbc.driver}")
     private String jdbcDriver;
     @Value("${jdbc.url}")
