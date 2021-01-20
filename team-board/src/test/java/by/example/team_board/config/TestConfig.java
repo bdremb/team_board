@@ -23,7 +23,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:teamBoardTest.properties")
 @EnableTransactionManagement
-//@ComponentScan(basePackages = "by.example.team_board")
+@ComponentScan(basePackages = "by.example.team_board")
 
 public class TestConfig {
     final static Logger logger = LoggerFactory.getLogger(TestConfig.class);
@@ -66,7 +66,7 @@ public class TestConfig {
         sessionFactory.setPackagesToScan("by.example.team_board.entity");
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.dialect", hibernateDialect);
-        hibernateProperties.setProperty("hibernate.show_sql", hibernateShowSql);
+        //hibernateProperties.setProperty("hibernate.show_sql", hibernateShowSql);
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
         hibernateProperties.setProperty("hibernate.createDatabaseIfNotExist", createDatabaseIfNotExist);
         sessionFactory.setHibernateProperties(hibernateProperties);

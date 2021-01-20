@@ -23,9 +23,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * {@summary This class is controller
- *
- * @since 1.0.}
+ * @author Denis
+ * @version 1.0
  */
 @Controller
 @RequestMapping("/team")
@@ -40,9 +39,9 @@ public class PersonController {
   }
 
   /**
-   * @param model attribute.
-   * @return list-person page.
-   * @summary
+   * @param model includes a list of all persons
+   * @return list-person page from Pages enum
+   * @see Pages
    */
   @GetMapping("/persons")
   public String showAllPersons(Model model) {
@@ -53,7 +52,7 @@ public class PersonController {
 
   /**
    * @param id    person id.
-   * @param model model.
+   * @param model include Person.
    * @return person-details page.
    * @summary show
    */

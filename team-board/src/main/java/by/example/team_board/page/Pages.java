@@ -1,5 +1,8 @@
 package by.example.team_board.page;
 
+/**
+ * @see java.lang.Enum
+ */
 public enum Pages {
   PERSON_PAGE("person-page"),
   ERROR_PAGE("error-page"),
@@ -8,7 +11,7 @@ public enum Pages {
   REGISTER("register"),
   LOGIN("login"),
   START("start"),
-  ABOUT("about"),
+  DETAILS("details"),
   HOME("home");
 
   private final String page;
