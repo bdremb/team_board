@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginController {
   /**
    * @return the name of the start page
+   * @see Pages#START
    */
   @GetMapping("/")
   public String goToStartPage() {
@@ -22,6 +23,7 @@ public class LoginController {
 
   /**
    * @return the name of the details page
+   * @see Pages#DETAILS
    */
   @GetMapping("/about")
   public String goToDetails() {    // TODO: add javadoc
@@ -29,8 +31,9 @@ public class LoginController {
   }
 
   /**
-   * @param model takes a new Person object
+   * @param model takes a new Person
    * @return the name of the login page
+   * @see Pages#LOGIN
    */
   @GetMapping("/login")
   public String goToLoginPage(Model model) {
@@ -41,6 +44,7 @@ public class LoginController {
   /**
    * @param model takes a new Person object
    * @return the name of the login page
+   * @see Pages#REGISTER
    */
   @GetMapping("/register")
   public String goToRegisterPage(Model model) {
@@ -50,6 +54,7 @@ public class LoginController {
 
   /**
    * @return the name of the person details page
+   * @see Pages#PERSON_DETAILS
    */
   @GetMapping("/details")
   public String goToPersonDetailsPage() {

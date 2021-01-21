@@ -40,7 +40,7 @@ public class PersonController {
 
   /**
    * @param model includes a list of all persons
-   * @return list-person page from Pages enum
+   * @return list person page from Pages enum
    * @see Pages
    */
   @GetMapping("/persons")
@@ -51,8 +51,8 @@ public class PersonController {
   }
 
   /**
-   * @param id    person id.
-   * @param model include Person.
+   * @param id the Person id to show person details
+   * @param model the Person
    * @return person-details page.
    * @summary show
    */
@@ -64,9 +64,9 @@ public class PersonController {
   }
 
   /**
-   * @param person
-   * @param bindingResult
-   * @param model
+   * @param person the Person to save
+   * @param bindingResult new {@link Person} data entry errors
+   * @param model the Person
    * @return
    */
   @PostMapping("/persons")
@@ -92,9 +92,9 @@ public class PersonController {
   }
 
   /**
-   * @param id
-   * @param model
-   * @return
+   * @param id the id of the Person to be deleted
+   * @param model list of existing Persons
+   * @return list person page from Pages enum
    */
   @GetMapping("/persons/delete/{id}")
   public String deletePerson(@PathVariable("id") int id, Model model) {
@@ -103,15 +103,15 @@ public class PersonController {
   }
 
   /**
-   * @param id
-   * @param model
-   * @return
+   * @param id the id of the Person to be update
+   * @param model Person with updated data
+   * @return the name of the person page
    */
   @GetMapping("/persons/update/{id}")
   public String updatePerson(@PathVariable("id") int id, Model model) {
     Person person = personService.getPerson(id);
     model.addAttribute("person", person);
-    return Pages.ERROR_PAGE.getPage();
+    return Pages.PERSON_PAGE.getPage();
   }
 
   /**
