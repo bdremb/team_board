@@ -5,11 +5,9 @@ import by.example.team_board.entity.Person;
 import by.example.team_board.exceptions.PersonAlreadyExistException;
 import by.example.team_board.page.Pages;
 import by.example.team_board.service.PersonService;
-
 import java.util.List;
 import java.util.Objects;
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +21,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
+ * Person controller.
+ *
  * @author Denis
  * @version 1.0
  */
@@ -39,6 +39,8 @@ public class PersonController {
   }
 
   /**
+   * Method for getting a list of persons.
+   *
    * @param model includes a list of all persons
    * @return list person page from Pages enum
    * @see Pages#LIST_PERSONS
@@ -51,6 +53,8 @@ public class PersonController {
   }
 
   /**
+   * Method for getting a single person.
+   *
    * @param id    the Person id to show person details
    * @param model the Person
    * @return the name of the person details page
@@ -63,6 +67,8 @@ public class PersonController {
   }
 
   /**
+   * Method for a save new person.
+   *
    * @param person        the Person to save
    * @param bindingResult new {@link Person} data entry errors
    * @param model         the Person
@@ -92,6 +98,8 @@ public class PersonController {
   }
 
   /**
+   * Delete person.
+   *
    * @param id    the id of the Person to be deleted
    * @param model list of existing Persons
    * @return list person page from Pages enum
@@ -103,6 +111,8 @@ public class PersonController {
   }
 
   /**
+   * Update person.
+   *
    * @param id    the id of the Person to be update
    * @param model Person with updated data
    * @return the name of the person page
@@ -116,6 +126,8 @@ public class PersonController {
   }
 
   /**
+   * Login.
+   *
    * @param person Person with data for authentication
    * @param model  the Person
    * @return redirect to login page
@@ -133,6 +145,8 @@ public class PersonController {
   }
 
   /**
+   * Method for updating additional data.
+   *
    * @param person the Person who needs to update ExtraData
    * @param model  Person with updated ExtraData
    * @return the name of the person page

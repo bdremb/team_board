@@ -1,6 +1,5 @@
 package by.example.team_board.service;
 
-import by.example.team_board.config.TestConfig;
 import by.example.team_board.dao.PersonDAO;
 import by.example.team_board.dao.PersonDAOImpl;
 import by.example.team_board.entity.ExtraInfo;
@@ -25,7 +24,6 @@ public class PersonServiceImplTest extends TestCase {
   private static Person testPerson1;
   private static Person testPerson2;
   private static EmbeddedDatabase db;
-
 
 
   public void setUp() throws Exception {
