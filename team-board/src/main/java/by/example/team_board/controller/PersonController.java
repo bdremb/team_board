@@ -41,7 +41,7 @@ public class PersonController {
   /**
    * @param model includes a list of all persons
    * @return list person page from Pages enum
-   * @see Pages
+   * @see Pages#LIST_PERSONS
    */
   @GetMapping("/persons")
   public String showAllPersons(Model model) {
@@ -51,10 +51,9 @@ public class PersonController {
   }
 
   /**
-   * @param id the Person id to show person details
+   * @param id    the Person id to show person details
    * @param model the Person
-   * @return person-details page.
-   * @summary show
+   * @return the name of the person details page
    */
   @GetMapping("/persons/{id}")
   public String showPersonDetailsById(@PathVariable("id") int id, Model model) {
@@ -64,10 +63,11 @@ public class PersonController {
   }
 
   /**
-   * @param person the Person to save
+   * @param person        the Person to save
    * @param bindingResult new {@link Person} data entry errors
-   * @param model the Person
-   * @return
+   * @param model         the Person
+   * @return the name of the error page
+   * @see Pages#ERROR_PAGE
    */
   @PostMapping("/persons")
   public String saveNewPerson(@ModelAttribute("person") @Valid Person person,
@@ -92,7 +92,7 @@ public class PersonController {
   }
 
   /**
-   * @param id the id of the Person to be deleted
+   * @param id    the id of the Person to be deleted
    * @param model list of existing Persons
    * @return list person page from Pages enum
    */
@@ -103,9 +103,10 @@ public class PersonController {
   }
 
   /**
-   * @param id the id of the Person to be update
+   * @param id    the id of the Person to be update
    * @param model Person with updated data
    * @return the name of the person page
+   * @see Pages#PERSON_PAGE
    */
   @GetMapping("/persons/update/{id}")
   public String updatePerson(@PathVariable("id") int id, Model model) {
@@ -115,9 +116,10 @@ public class PersonController {
   }
 
   /**
-   * @param person
-   * @param model
-   * @return
+   * @param person Person with data for authentication
+   * @param model  the Person
+   * @return redirect to login page
+   * @see Pages#PERSON_PAGE
    */
   @PostMapping("/login")
   public String login(@ModelAttribute("person") Person person, Model model) {
@@ -131,9 +133,10 @@ public class PersonController {
   }
 
   /**
-   * @param person
-   * @param model
-   * @return
+   * @param person the Person who needs to update ExtraData
+   * @param model  Person with updated ExtraData
+   * @return the name of the person page
+   * @see Pages#PERSON_PAGE
    */
   @PostMapping("/addinfo")
   public String updateExtraInfoOfPerson(@ModelAttribute("person") Person person, Model model) {
