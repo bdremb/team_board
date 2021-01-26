@@ -28,7 +28,7 @@ public class PersonServiceTest {
 
   private static final SessionFactory sessionFactory = TestConfig.sessionFactory().getObject();
   @Autowired
-  // private static SessionFactory sessionFactory;
+  //private static SessionFactory sessionFactory;
   //@Autowired
   private static PersonServiceImpl personService;
   private static Person testPerson1;

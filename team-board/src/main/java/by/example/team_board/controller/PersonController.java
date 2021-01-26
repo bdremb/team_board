@@ -5,9 +5,6 @@ import by.example.team_board.entity.Person;
 import by.example.team_board.exceptions.PersonAlreadyExistException;
 import by.example.team_board.page.Pages;
 import by.example.team_board.service.PersonService;
-import java.util.List;
-import java.util.Objects;
-import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +16,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.Objects;
+
+import static by.example.team_board.page.Pages.ERROR_PAGE;
+import static by.example.team_board.page.Pages.LIST_PERSONS;
+import static by.example.team_board.page.Pages.PERSON_DETAILS;
+import static by.example.team_board.page.Pages.PERSON_PAGE;
 
 /**
  * Person controller.
@@ -49,7 +55,7 @@ public class PersonController {
   public String showAllPersons(Model model) {
     List<Person> persons = personService.getAllPersons();
     model.addAttribute("allPersons", persons);
-    return Pages.LIST_PERSONS.getPage();
+    return LIST_PERSONS.getPage();
   }
 
   /**
@@ -63,7 +69,7 @@ public class PersonController {
   public String showPersonDetailsById(@PathVariable("id") int id, Model model) {
     Person person = personService.getPerson(id);
     model.addAttribute("person", person);
-    return Pages.PERSON_DETAILS.getPage();
+    return PERSON_DETAILS.getPage();  //static import
   }
 
   /**
@@ -94,11 +100,11 @@ public class PersonController {
     }
     model.addAttribute("info", "Change your password");
     model.addAttribute("page", "/register");
-    return Pages.ERROR_PAGE.getPage();
+    return ERROR_PAGE.getPage();
   }
 
   /**
-   * Delete person.
+   * Delete a person.
    *
    * @param id    the id of the Person to be deleted
    * @param model list of existing Persons
@@ -122,7 +128,7 @@ public class PersonController {
   public String updatePerson(@PathVariable("id") int id, Model model) {
     Person person = personService.getPerson(id);
     model.addAttribute("person", person);
-    return Pages.PERSON_PAGE.getPage();
+    return PERSON_PAGE.getPage();
   }
 
   /**
@@ -139,7 +145,7 @@ public class PersonController {
     if (Objects.nonNull(newPerson)) {
       model.addAttribute("person", newPerson);
       logger.info("Login completed successfully.");
-      return Pages.PERSON_PAGE.getPage();
+      return PERSON_PAGE.getPage();
     }
     return "redirect:/login";
   }
@@ -155,6 +161,6 @@ public class PersonController {
   @PostMapping("/addinfo")
   public String updateExtraInfoOfPerson(@ModelAttribute("person") Person person, Model model) {
     model.addAttribute("person", personService.updateExtraInfoOfPerson(person));
-    return Pages.PERSON_PAGE.getPage();
+    return PERSON_PAGE.getPage();
   }
 }

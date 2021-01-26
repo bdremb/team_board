@@ -6,11 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import static by.example.team_board.page.Pages.DETAILS;
+import static by.example.team_board.page.Pages.LOGIN;
+import static by.example.team_board.page.Pages.PERSON_DETAILS;
+import static by.example.team_board.page.Pages.REGISTER;
+import static by.example.team_board.page.Pages.START;
+
 /**
  * Login controller.
  *
  * @author Bdremb
- *
  * @since 1.0
  */
 @Controller
@@ -23,7 +28,7 @@ public class LoginController {
    */
   @GetMapping("/")
   public String goToStartPage() {
-    return Pages.START.getPage();
+    return START.getPage();
   }
 
   /**
@@ -34,7 +39,7 @@ public class LoginController {
    */
   @GetMapping("/about")
   public String goToDetails() {    // TODO: add javadoc
-    return Pages.DETAILS.getPage();
+    return DETAILS.getPage();
   }
 
   /**
@@ -47,7 +52,7 @@ public class LoginController {
   @GetMapping("/login")
   public String goToLoginPage(Model model) {
     model.addAttribute("person", new Person());
-    return Pages.LOGIN.getPage();
+    return LOGIN.getPage();
   }
 
   /**
@@ -60,7 +65,7 @@ public class LoginController {
   @GetMapping("/register")
   public String goToRegisterPage(Model model) {
     model.addAttribute("person", new Person());
-    return Pages.REGISTER.getPage();
+    return REGISTER.getPage();
   }
 
   /**
@@ -71,6 +76,6 @@ public class LoginController {
    */
   @GetMapping("/details")
   public String goToPersonDetailsPage() {
-    return Pages.PERSON_DETAILS.getPage();
+    return PERSON_DETAILS.getPage();
   }
 }

@@ -47,7 +47,7 @@ public class TestConfig {
 
     @Bean
     public static DataSource dataSource() {
-        ComboPooledDataSource dataSource = new ComboPooledDataSource();
+        ComboPooledDataSource dataSource = new ComboPooledDataSource(); // другой дата Source
         try {
             dataSource.setDriverClass(jdbcDriver);
             dataSource.setJdbcUrl(jdbcUrl);
